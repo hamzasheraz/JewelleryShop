@@ -10,6 +10,7 @@ import './plugins/slick/slick.css'
 import './plugins/slick/slick-theme.css'
 import './plugins/animate/animate.css'
 import Login from './Components/Login'
+import SignUp from './Components/SignUp'
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
     {/* <Beforeline/>
     <Menu/>
     <Heroslider/> */}
-    <Login/>
+    {/* <Login/> */}
+    <SignUp/>
 
     </>
   )
