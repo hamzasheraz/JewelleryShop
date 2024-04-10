@@ -11,6 +11,8 @@ import './plugins/slick/slick-theme.css'
 import './plugins/animate/animate.css'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
+import Forgot from './Components/Forgot'
+import ProductSections from './Components/ProductSections'
 
 function App() {
 
@@ -18,12 +20,13 @@ function App() {
   return (
     <>
 
-    {/* <Beforeline/>
+    <Beforeline/>
     <Menu/>
-    <Heroslider/> */}
+    <Heroslider/>
+    <ProductSections/>
     {/* <Login/> */}
-    <SignUp/>
-
+    {/* <SignUp/> */}
+    {/* <Forgot/> */}
     </>
   )
 }
