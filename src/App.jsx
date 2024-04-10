@@ -3,9 +3,7 @@ import React from 'react'
 import Beforeline from './Components/Beforeline'
 import Menu from './Components/Menu'
 import Heroslider from './Components/Heroslider'
-
 import './App.css'
-
 import './plugins/slick/slick.css'
 import './plugins/slick/slick-theme.css'
 import './plugins/animate/animate.css'
@@ -13,10 +11,12 @@ import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import Forgot from './Components/Forgot'
 import ProductSections from './Components/ProductSections'
+import ProductsCategory from './Components/ProductsCategory'
+import TrendyProducts from './Components/TrendyProducts'
+import Subscription from './Components/Subscription'
+import Footer from './Components/Footer'
 
 function App() {
-
-
   return (
     <>
 
@@ -27,6 +27,13 @@ function App() {
     {/* <Login/> */}
     {/* <SignUp/> */}
     {/* <Forgot/> */}
+    <ProductsCategory/>
+    <TrendyProducts/>
+    <Subscription/>
+    <Footer/>
+    
+    {/* <Login/> */}
+    {/* <SignUp/> */}
     </>
   )
 }
