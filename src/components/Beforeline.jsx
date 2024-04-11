@@ -42,7 +42,7 @@ function Beforeline() {
            <div className="dropdown-menu cart-dropdown">
              <div className="media">
                <a className="pull-left" href="#!">
-                 <img className="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
+                 <img className="media-object" src="/src/images/shop/cart/cart-1.jpg" alt="image" />
                </a>
                <div className="media-body">
                  <h4 className="media-heading"><a href="#!">Ladies Bag</a></h4>
@@ -56,7 +56,7 @@ function Beforeline() {
              </div>
              <div className="media">
                <a className="pull-left" href="#!">
-                 <img className="media-object" src="images/shop/cart/cart-2.jpg" alt="image" />
+                 <img className="media-object" src="/src/images/shop/cart/cart-2.jpg" alt="image" />
                </a>
                <div className="media-body">
                  <h4 className="media-heading"><a href="#!">Ladies Bag</a></h4>

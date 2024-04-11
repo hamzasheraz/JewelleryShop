@@ -16,19 +16,23 @@ import TrendyProducts from './Components/TrendyProducts'
 import Subscription from './Components/Subscription'
 import Footer from './Components/Footer'
 
+import Shop from './Components/Shop'
+
 function App() {
 
 
   return (
     <>
-
+{/* 
     <Beforeline/>
     <Menu/>
     <Heroslider/>
     <ProductsCategory/>
     <TrendyProducts/>
     <Subscription/>
-    <Footer/>
+    <Footer/> */}
+
+    <Shop/>
     
     {/* <Login/> */}
     {/* <SignUp/> */}
