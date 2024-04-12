@@ -12,7 +12,6 @@ import SignUp from './Components/SignUp'
 import Forgot from './Components/Forgot'
 import ProductSections from './Components/ProductSections'
 import ProductsCategory from './Components/ProductsCategory'
-import TrendyProducts from './Components/TrendyProducts'
 import Subscription from './Components/Subscription'
 import Footer from './Components/Footer'
 
@@ -23,12 +22,11 @@ function App() {
     <Beforeline/>
     <Menu/>
     <Heroslider/>
-    <ProductSections/>
     {/* <Login/> */}
     {/* <SignUp/> */}
     {/* <Forgot/> */}
     <ProductsCategory/>
-    <TrendyProducts/>
+    <ProductSections/>
     <Subscription/>
     <Footer/>
     
