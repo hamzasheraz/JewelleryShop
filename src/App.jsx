@@ -15,10 +15,18 @@ import ProductsCategory from './Components/ProductsCategory'
 import Subscription from './Components/Subscription'
 import Footer from './Components/Footer'
 
+import Shop from './Components/Shop'
+import Checkout from './Components/Checkout'
+import Cart from './Components/Cart'
+import Pricing from './Components/Pricing'
+import Confirmation from './Components/Confirmation'
+import Productdetails from './Components/Productdetails'
+
 function App() {
   return (
     <>
-
+    {/* general homebar k components */}
+{/* 
     <Beforeline/>
     <Menu/>
     <Heroslider/>
@@ -28,7 +36,16 @@ function App() {
     <ProductsCategory/>
     <ProductSections/>
     <Subscription/>
-    <Footer/>
+    <Footer/> */}
+   
+
+   {/* it all contains shop walay k links */}
+    {/* <Shop/> */}
+    {/* <Checkout/> */}
+    {/* <Cart/> */}
+    {/* <Pricing/> */}
+    {/* <Confirmation/> */}
+    <Productdetails/>
     
     {/* <Login/> */}
     {/* <SignUp/> */}
