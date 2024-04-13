@@ -23,6 +23,11 @@ import Confirmation from './Components/Confirmation'
 import Productdetails from './Components/Productdetails'
 import Contact from './Components/Contact'
 import About from './Components/About'
+import Dashboard from './Components/Dashboard'
+import Order from './Components/Order'
+import Address from './Components/Address'
+import ProfileDetails from './Components/ProfileDetails'
+import NotFound from './Components/404'
 
 function App() {
   return (
@@ -35,10 +40,10 @@ function App() {
     {/* <Login/> */}
     {/* <SignUp/> */}
     {/* <Forgot/> */}
-    <ProductsCategory/>
+    {/* <ProductsCategory/>
     <ProductSections/>
     <Subscription/>
-    <Footer/> */}
+    <Footer/>  */}
    
 
    {/* it all contains shop walay k links */}
@@ -52,10 +57,17 @@ function App() {
 
     {/* contains pages walay links */}
     {/* <Contact/> */}
-    <About/>
+    {/* <About/> */}
     
     {/* <Login/> */}
     {/* <SignUp/> */}
+
+    {/* <Dashboard/> */}
+    {/* <Order/> */}
+    {/* <Address/> */}
+    {/* <ProfileDetails/> */}
+
+    {/* <NotFound/> */}
     </>
   )
 }
