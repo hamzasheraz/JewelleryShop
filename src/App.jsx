@@ -22,6 +22,8 @@ import Cart from './Components/Cart'
 import Pricing from './Components/Pricing'
 import Confirmation from './Components/Confirmation'
 import Productdetails from './Components/Productdetails'
+import Contact from './Components/Contact'
+import About from './Components/About'
 
 function App() {
 
@@ -45,7 +47,12 @@ function App() {
     {/* <Cart/> */}
     {/* <Pricing/> */}
     {/* <Confirmation/> */}
-    <Productdetails/>
+    {/* <Productdetails/> */}
+
+
+    {/* contains pages walay links */}
+    {/* <Contact/> */}
+    <About/>
     
     {/* <Login/> */}
     {/* <SignUp/> */}
