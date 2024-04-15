@@ -1,7 +1,7 @@
 import React from "react";
 import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Footer";
+import Footer from "./Layout/Footer/Footer";
 
 function Confirmation() {
   return (
