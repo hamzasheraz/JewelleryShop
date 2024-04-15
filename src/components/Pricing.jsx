@@ -1,13 +1,9 @@
 import React from "react";
-
-import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
 
 function Pricing() {
   return (
     <>
-      <Beforeline />
       <Menu />
 
       <section className="pricing-table">
@@ -142,8 +138,6 @@ function Pricing() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

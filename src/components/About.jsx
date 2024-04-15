@@ -1,11 +1,8 @@
 import React from "react";
-import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
 function About() {
   return (
     <>
-      <Beforeline />
       <Menu />
       <section class="page-header">
         <div class="container">
@@ -127,8 +124,6 @@ function About() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

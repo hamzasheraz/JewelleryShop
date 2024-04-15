@@ -1,6 +1,5 @@
 import { useState } from "react";
 import React from "react";
-import Beforeline from "./Components/Beforeline";
 import Menu from "./Components/Menu";
 import Heroslider from "./Components/Heroslider";
 import "./App.css";
@@ -26,6 +25,7 @@ import Address from "./Components/Address";
 import ProfileDetails from "./Components/ProfileDetails";
 import NotFound from "./Components/404";
 import Form from "./Components/Authentication/Form";
+import TopHeader from "./Components/Layout/TopHeaderBar/TopHeader";
 
 function App() {
   return (
@@ -41,7 +41,8 @@ function App() {
       {/* <Footer/>  */}
 
       {/* it all contains shop walay k links */}
-      <Shop />
+      <TopHeader/>
+      {/* <Shop /> */}
       {/* <Checkout/> */}
       {/* <Cart/> */}
       {/* <Pricing/> */}

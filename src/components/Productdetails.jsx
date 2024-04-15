@@ -1,12 +1,10 @@
 import React from "react";
-import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
 
 function Productdetails() {
   return (
     <>
-      <Beforeline />
+     
       <Menu />
       <section className="single-product">
         <div className="container">
@@ -381,8 +379,6 @@ function Productdetails() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

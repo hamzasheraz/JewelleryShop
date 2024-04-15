@@ -1,12 +1,9 @@
 import React from "react";
-import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
 
 function Shop() {
   return (
     <>
-      <Beforeline />
       <Menu />
       <section className="page-header">
         <div className="container">
@@ -409,7 +406,6 @@ function Shop() {
         </div>
       </section>
 
-      <Footer />
     </>
   );
 }

@@ -1,12 +1,9 @@
 import React from "react";
-import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
 
 function Checkout() {
   return (
     <>
-      <Beforeline />
       <Menu />
 
       <div>
@@ -208,7 +205,6 @@ function Checkout() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

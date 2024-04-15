@@ -1,11 +1,8 @@
 import React from "react";
-import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
 function Contact() {
   return (
     <>
-      <Beforeline />
       <Menu />
       <section class="page-header">
         <div class="container">
@@ -152,8 +149,6 @@ function Contact() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

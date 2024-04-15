@@ -1,13 +1,12 @@
-import Beforeline from "./Beforeline";
+
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
+
 
 import React from "react";
 
 function Cart() {
   return (
     <>
-      <Beforeline />
       <Menu />
 
       <div className="page-wrapper">
@@ -97,8 +96,6 @@ function Cart() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

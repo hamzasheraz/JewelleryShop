@@ -1,12 +1,9 @@
 import React from "react";
-import Beforeline from "./Beforeline";
 import Menu from "./Menu";
-import Footer from "./Layout/Footer/Footer";
 
 function Confirmation() {
   return (
     <>
-      <Beforeline />
       <Menu />
 
       <section class="page-wrapper success-msg">
@@ -29,7 +26,6 @@ function Confirmation() {
         </div>
       </section>
 
-      <Footer />
     </>
   );
 }
