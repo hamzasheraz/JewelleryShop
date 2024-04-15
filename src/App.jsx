@@ -7,9 +7,6 @@ import './App.css'
 import './plugins/slick/slick.css'
 import './plugins/slick/slick-theme.css'
 import './plugins/animate/animate.css'
-import Login from './Components/Login'
-import SignUp from './Components/SignUp'
-import Forgot from './Components/Forgot'
 import ProductSections from './Components/ProductSections'
 import ProductsCategory from './Components/ProductsCategory'
 import Subscription from './Components/Subscription'
@@ -28,18 +25,16 @@ import Order from './Components/Order'
 import Address from './Components/Address'
 import ProfileDetails from './Components/ProfileDetails'
 import NotFound from './Components/404'
+import Form from './Components/Authentication/Form'
 
 function App() {
   return (
     <>
     {/* general homebar k components */}
-{/* 
-    <Beforeline/>
+    {/* <Beforeline/>
     <Menu/>
-    <Heroslider/>
-    {/* <Login/> */}
-    {/* <SignUp/> */}
-    {/* <Forgot/> */}
+    <Heroslider/> */}
+  
     {/* <ProductsCategory/>
     <ProductSections/>
     <Subscription/>
@@ -59,8 +54,8 @@ function App() {
     {/* <Contact/> */}
     {/* <About/> */}
     
-    {/* <Login/> */}
-    {/* <SignUp/> */}
+    
+    {/* <Form/> */}
 
     {/* <Dashboard/> */}
     {/* <Order/> */}
