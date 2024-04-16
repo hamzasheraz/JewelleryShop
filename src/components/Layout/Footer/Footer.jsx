@@ -1,9 +1,14 @@
 import React from "react";
 import Social from "./Social";
 import Fmenu from "./Fmenu";
+import Subscription from "./Subscription";
+import NewsFeed from "./NewsFeed";
 
 function Footer() {
   return (
+    <>
+    <Subscription/>
+    <NewsFeed/>
     <footer className="footer section text-center">
       <div className="container">
         <div className="row">
@@ -15,6 +20,7 @@ function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
 

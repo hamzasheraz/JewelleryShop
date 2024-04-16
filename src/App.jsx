@@ -7,7 +7,7 @@ import "./plugins/slick/slick-theme.css";
 import "./plugins/animate/animate.css";
 import ProductSections from "./Components/ProductSections";
 import ProductsCategory from "./Components/ProductsCategory";
-import Subscription from "./Components/Subscription";
+import Subscription from "./Components/Layout/Footer/Subscription";
 import Footer from "./Components/Layout/Footer/Footer";
 
 import Shop from "./Components/Shop";
@@ -38,11 +38,11 @@ function App() {
       {/* <ProductsCategory/>
     <ProductSections/>
     <Subscription/> */}
-      {/* <Footer/>  */}
+      <Footer/> 
 
       {/* it all contains shop walay k links */}
-      <TopHeader/>
-      <NavBar/>
+      {/* <TopHeader/>
+      <NavBar/> */}
       {/* <Shop /> */}
       {/* <Checkout/> */}
       {/* <Cart/> */}
