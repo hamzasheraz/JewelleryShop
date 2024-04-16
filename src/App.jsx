@@ -26,6 +26,7 @@ import ProfileDetails from "./Components/ProfileDetails";
 import NotFound from "./Components/404";
 import Form from "./Components/Authentication/Form";
 import TopHeader from "./Components/Layout/TopHeaderBar/TopHeader";
+import NavBar from "./Components/Layout/NavBar/NavBar";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
 
       {/* it all contains shop walay k links */}
       <TopHeader/>
+      <NavBar/>
       {/* <Shop /> */}
       {/* <Checkout/> */}
       {/* <Cart/> */}
