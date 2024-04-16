@@ -16,29 +16,29 @@ import Cart from "./Components/Cart";
 import Pricing from "./Components/Pricing";
 import Confirmation from "./Components/Confirmation";
 import Productdetails from "./Components/Productdetails";
-import Contact from "./Components/Contact";
-import About from "./Components/About";
+import Contact from "./Components/Introduction/Contact";
+import About from "./Components/Introduction/About";
 import Dashboard from "./Components/Dashboard";
 import Order from "./Components/Order";
 import Address from "./Components/Address";
 import ProfileDetails from "./Components/ProfileDetails";
-import NotFound from "./Components/404";
+import NotFound from "./Components/Error/404";
 import Form from "./Components/Authentication/Form";
 import TopHeader from "./Components/Layout/TopHeaderBar/TopHeader";
 import NavBar from "./Components/Layout/NavBar/NavBar";
+import FAQ from "./Components/Introduction/FAQ/FAQ";
 
 function App() {
   return (
     <>
       {/* general homebar k components */}
-      {/* <Beforeline/>
-    <Menu/>
-    <Heroslider/> */}
+
+      {/*    <Heroslider/> */}
 
       {/* <ProductsCategory/>
     <ProductSections/>
     <Subscription/> */}
-      <Footer/> 
+      {/* <Footer/>  */}
 
       {/* it all contains shop walay k links */}
       {/* <TopHeader/>
@@ -53,6 +53,7 @@ function App() {
       {/* contains pages walay links */}
       {/* <Contact/> */}
       {/* <About/> */}
+      <FAQ />
 
       {/* <Form/> */}
 

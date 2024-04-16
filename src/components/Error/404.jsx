@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from '../../images/logo.png'
 
 const NotFound = () => {
   return (
@@ -7,7 +8,7 @@ const NotFound = () => {
         <div className="row">
             <div className="col-md-12">
                 <a href="index.html">
-                    <img src="images/logo.png" alt="site logo" />
+                    <img src={logo} alt="site logo" />
                 </a>
                 <h1>404</h1>
                 <h2>Page Not Found</h2>

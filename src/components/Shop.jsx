@@ -3,7 +3,7 @@ import React from "react";
 function Shop() {
   return (
     <>
-      {/* <section className="page-header">
+      <section className="page-header">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -402,7 +402,7 @@ function Shop() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
     </>
   );

@@ -1,26 +1,10 @@
 import React from "react";
+import Header from "../Layout/Page-Header/Header";
 
 function About() {
   return (
     <>
-      <section class="page-header">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="content">
-                <h1 class="page-name">About Us</h1>
-                <ol class="breadcrumb">
-                  <li>
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li class="active">about us</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <Header title="About us" page="about us"/>
       <section class="about section">
         <div class="container">
           <div class="row">
