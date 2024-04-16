@@ -16,7 +16,7 @@ import Cart from "./Components/Cart";
 import Pricing from "./Components/Pricing";
 import Confirmation from "./Components/Confirmation";
 import Productdetails from "./Components/Productdetails";
-import Contact from "./Components/Introduction/Contact";
+import Contact from "./Components/Introduction/Contact/Contact";
 import About from "./Components/Introduction/About";
 import Dashboard from "./Components/Dashboard";
 import Order from "./Components/Order";
@@ -51,9 +51,9 @@ function App() {
       {/* <Productdetails/> */}
 
       {/* contains pages walay links */}
-      {/* <Contact/> */}
+      <Contact />
       {/* <About/> */}
-      <FAQ />
+      {/* <FAQ /> */}
 
       {/* <Form/> */}
 
