@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function DropDownMenuItem({ title, children }) {
   return (
@@ -16,6 +16,8 @@ function DropDownMenuItem({ title, children }) {
         {title} <span className="tf-ion-ios-arrow-down"></span>
       </a>
       <ul className="dropdown-menu">
+        <li className="dropdown-header">{title}</li>
+        <li role="separator" className="divider"></li>
         {children}
       </ul>
     </li>

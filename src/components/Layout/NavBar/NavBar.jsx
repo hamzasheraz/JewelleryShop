@@ -1,6 +1,6 @@
 import React from "react";
 import NavBarHeader from "./NavBarHeader";
-import NavBarLinks from "./NavBarLinks";
+// import NavBarLinks from "./NavBarLinks";
 import MenuItem from "./MenuItem";
 import DropDownMenuItem from "./DropDownMenuItem";
 
@@ -30,6 +30,12 @@ const NavBar = () => {
                 <MenuItem title="FAQ" url="cart.html" />
               </DropDownMenuItem>
               <MenuItem title="Blog" url="blog.html" />
+              <DropDownMenuItem title="Dashboard">
+                <MenuItem title="Profile Interface" />
+                <MenuItem title="Orders" />
+                <MenuItem title="Address" />
+                <MenuItem title="Details" />
+              </DropDownMenuItem>
               {/* Add more menu items as needed */}
             </ul>
           </div>
