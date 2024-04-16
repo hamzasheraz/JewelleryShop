@@ -1,14 +1,8 @@
-
-import Menu from "./Menu";
-
-
 import React from "react";
 
 function Cart() {
   return (
     <>
-      <Menu />
-
       <div className="page-wrapper">
         <div className="cart shopping">
           <div className="container">

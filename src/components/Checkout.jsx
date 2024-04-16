@@ -1,11 +1,8 @@
 import React from "react";
-import Menu from "./Menu";
 
 function Checkout() {
   return (
     <>
-      <Menu />
-
       <div>
         <div className="page-wrapper">
           <div className="checkout shopping">

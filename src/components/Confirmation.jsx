@@ -1,11 +1,8 @@
 import React from "react";
-import Menu from "./Menu";
 
 function Confirmation() {
   return (
     <>
-      <Menu />
-
       <section class="page-wrapper success-msg">
         <div class="container">
           <div class="row">

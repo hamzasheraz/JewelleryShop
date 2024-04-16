@@ -1,10 +1,8 @@
 import React from "react";
-import Menu from "./Menu";
 
 function Shop() {
   return (
     <>
-      <Menu />
       {/* <section className="page-header">
         <div className="container">
           <div className="row">

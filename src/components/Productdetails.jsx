@@ -1,11 +1,8 @@
 import React from "react";
-import Menu from "./Menu";
 
 function Productdetails() {
   return (
     <>
-     
-      <Menu />
       <section className="single-product">
         <div className="container">
           <div className="row">

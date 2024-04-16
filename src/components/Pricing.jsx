@@ -1,10 +1,8 @@
 import React from "react";
-import Menu from "./Menu";
 
 function Pricing() {
   return (
     <>
-      <Menu />
 
       <section className="pricing-table">
         <div className="container">

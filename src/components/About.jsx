@@ -1,9 +1,8 @@
 import React from "react";
-import Menu from "./Menu";
+
 function About() {
   return (
     <>
-      <Menu />
       <section class="page-header">
         <div class="container">
           <div class="row">
