@@ -11,8 +11,8 @@ import Subscription from "./Components/Layout/Footer/Subscription";
 import Footer from "./Components/Layout/Footer/Footer";
 
 import Shop from "./Components/Shop";
-import Checkout from "./Components/Checkout";
-import Cart from "./Components/Cart";
+import Checkout from "./Components/Shop/Checkout";
+import Cart from "./Components/Shop/Cart";
 import Pricing from "./Components/Pricing";
 import Confirmation from "./Components/Confirmation";
 import Productdetails from "./Components/Productdetails";
@@ -40,14 +40,14 @@ function App() {
       {/* <ProductsCategory/>
     <ProductSections/>
     <Subscription/> */}
-      <About />
+      {/* <About /> */}
 
       {/* it all contains shop walay k links */}
       {/* <Address/> */}
       {/* <Order/> */}
       {/* <Shop /> */}
       {/* <Checkout/> */}
-      {/* <Cart/> */}
+      <Cart/>
       {/* <Pricing/> */}
       {/* <Confirmation/> */}
       {/* <Productdetails/> */}
