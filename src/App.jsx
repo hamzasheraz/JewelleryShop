@@ -18,15 +18,15 @@ import Confirmation from "./Components/Confirmation";
 import Productdetails from "./Components/Productdetails";
 import Contact from "./Components/Introduction/Contact/Contact";
 import About from "./Components/Introduction/About";
-import Dashboard from "./Components/Dashboard";
-import Order from "./Components/Order";
-import Address from "./Components/Address";
-import ProfileDetails from "./Components/ProfileDetails";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import ProfileDetails from "./Components/Dashboard/ProfileDetails";
 import NotFound from "./Components/Error/404";
 import Form from "./Components/Authentication/Form";
 import TopHeader from "./Components/Layout/TopHeaderBar/TopHeader";
 import NavBar from "./Components/Layout/NavBar/NavBar";
 import FAQ from "./Components/Introduction/FAQ/FAQ";
+import Address from "./Components/Dashboard/Address";
+import Order from "./Components/Dashboard/Order";
 
 function App() {
   return (
@@ -41,8 +41,10 @@ function App() {
       {/* <Footer/>  */}
 
       {/* it all contains shop walay k links */}
-      {/* <TopHeader/>
-      <NavBar/> */}
+      <TopHeader/>
+      <NavBar/>
+      {/* <Address/> */}
+      {/* <Order/> */}
       {/* <Shop /> */}
       {/* <Checkout/> */}
       {/* <Cart/> */}
@@ -51,13 +53,13 @@ function App() {
       {/* <Productdetails/> */}
 
       {/* contains pages walay links */}
-      <Contact />
+      {/* <Contact /> */}
       {/* <About/> */}
       {/* <FAQ /> */}
 
       {/* <Form/> */}
 
-      {/* <Dashboard/> */}
+      <Dashboard/>
       {/* <Order/> */}
       {/* <Address/> */}
       {/* <ProfileDetails/> */}

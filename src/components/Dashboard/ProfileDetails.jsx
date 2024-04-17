@@ -1,8 +1,11 @@
 import React from 'react'
-import img1 from '../images/avater.jpg'
+import img1 from '../../images/avater.jpg'
+import Header from '../Layout/Page-Header/Header'
 
 const ProfileDetails = () => {
   return (
+    <>
+    <Header title='Dashboard' page='my profile'/>
     <section className="user-dashboard page-wrapper">
     <div className="container">
       <div className="row">
@@ -34,6 +37,7 @@ const ProfileDetails = () => {
       </div>
     </div>
   </section>
+  </>
   )
 }
 
