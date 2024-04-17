@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "../Layout/Page-Header/Header";
+import Header from "../../Layout/Page-Header/Header";
+import VideoTestimonial from "./VideoTestimonial";
 
 function About() {
   return (
     <>
-      <Header title="About us" page="about us"/>
+      <Header title="About us" page="about us" />
       <section class="about section">
         <div class="container">
           <div class="row">
@@ -90,23 +91,7 @@ function About() {
           </div>
         </div>
       </section>
-
-      <div class="section video-testimonial bg-1 overly-white text-center mt-50">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Video presentation</h2>
-              <a
-                class="play-icon"
-                href="https://www.youtube.com/watch?v=oyEuk8j8imI&amp;rel=0"
-                data-toggle="lightbox"
-              >
-                <i class="tf-ion-ios-play"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <VideoTestimonial videoLink="https://www.youtube.com/watch?v=oyEuk8j8imI&rel=0" />
     </>
   );
 }

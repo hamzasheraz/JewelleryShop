@@ -17,7 +17,7 @@ import Pricing from "./Components/Pricing";
 import Confirmation from "./Components/Confirmation";
 import Productdetails from "./Components/Productdetails";
 import Contact from "./Components/Introduction/Contact/Contact";
-import About from "./Components/Introduction/About";
+import About from "./Components/Introduction/About/About";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import ProfileDetails from "./Components/Dashboard/ProfileDetails";
 import NotFound from "./Components/Error/404";
@@ -31,6 +31,8 @@ import Order from "./Components/Dashboard/Order";
 function App() {
   return (
     <>
+      <TopHeader />
+      <NavBar />
       {/* general homebar k components */}
 
       {/*    <Heroslider/> */}
@@ -38,11 +40,9 @@ function App() {
       {/* <ProductsCategory/>
     <ProductSections/>
     <Subscription/> */}
-      {/* <Footer/>  */}
+      <About />
 
       {/* it all contains shop walay k links */}
-      <TopHeader/>
-      <NavBar/>
       {/* <Address/> */}
       {/* <Order/> */}
       {/* <Shop /> */}
@@ -59,12 +59,13 @@ function App() {
 
       {/* <Form/> */}
 
-      <Dashboard/>
+      {/* <Dashboard/> */}
       {/* <Order/> */}
       {/* <Address/> */}
       {/* <ProfileDetails/> */}
 
       {/* <NotFound/> */}
+      <Footer />
     </>
   );
 }
