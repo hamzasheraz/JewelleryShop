@@ -11,8 +11,8 @@ import Subscription from "./Components/Layout/Footer/Subscription";
 import Footer from "./Components/Layout/Footer/Footer";
 
 import Shop from "./Components/Shop";
-import Checkout from "./Components/Shop/Checkout";
-import Cart from "./Components/Shop/Cart";
+import Checkout from "./Components/Shop/Checkout/Checkout";
+import Cart from "./Components/Shop/Cart/Cart";
 import Pricing from "./Components/Pricing";
 import Confirmation from "./Components/Confirmation";
 import Productdetails from "./Components/Productdetails";
@@ -46,8 +46,8 @@ function App() {
       {/* <Address/> */}
       {/* <Order/> */}
       {/* <Shop /> */}
-      {/* <Checkout/> */}
-      <Cart/>
+      <Checkout/>
+      {/* <Cart /> */}
       {/* <Pricing/> */}
       {/* <Confirmation/> */}
       {/* <Productdetails/> */}

@@ -1,6 +1,6 @@
 // CartTable.jsx
-import React from 'react';
-import CartItem from './CartItem';
+import React from "react";
+import CartItem from "./CartItem";
 
 const CartTable = ({ items }) => {
   return (
