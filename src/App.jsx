@@ -14,7 +14,7 @@ import Shop from "./Components/Shop";
 import Checkout from "./Components/Shop/Checkout/Checkout";
 import Cart from "./Components/Shop/Cart/Cart";
 import Pricing from "./Components/Pricing";
-import Confirmation from "./Components/Confirmation";
+import Confirmation from "./Components/Shop/Checkout/Confirmation";
 import Productdetails from "./Components/Productdetails";
 import Contact from "./Components/Introduction/Contact/Contact";
 import About from "./Components/Introduction/About/About";
