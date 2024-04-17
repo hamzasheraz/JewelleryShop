@@ -10,7 +10,7 @@ import ProductsCategory from "./Components/ProductsCategory";
 import Subscription from "./Components/Layout/Footer/Subscription";
 import Footer from "./Components/Layout/Footer/Footer";
 
-import Shop from "./Components/Shop";
+import Shop from "./Components/Shop/Shopping/Shop";
 import Checkout from "./Components/Shop/Checkout/Checkout";
 import Cart from "./Components/Shop/Cart/Cart";
 import Pricing from "./Components/Pricing";
@@ -45,8 +45,8 @@ function App() {
       {/* it all contains shop walay k links */}
       {/* <Address/> */}
       {/* <Order/> */}
-      {/* <Shop /> */}
-      <Checkout/>
+      <Shop />
+      {/* <Checkout/> */}
       {/* <Cart /> */}
       {/* <Pricing/> */}
       {/* <Confirmation/> */}
