@@ -46,8 +46,13 @@ const HeroSlider = () => {
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="slider-item th-fullpage hero-area"
-            style={{ backgroundImage: `url(${slide.image})` }}
+            className={`slider-item th-fullpage hero-area scooby ${
+              slide.id === 1
+                ? "scooby1"
+                : slide.id === 2
+                ? "scooby2"
+                : "scooby3"
+            }`}
           >
             <div className="container">
               <div className="row">
