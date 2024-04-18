@@ -13,7 +13,6 @@ import Footer from "./Components/Layout/Footer/Footer";
 import Shop from "./Components/Shop/Shopping/Shop";
 import Checkout from "./Components/Shop/Checkout/Checkout";
 import Cart from "./Components/Shop/Cart/Cart";
-import Pricing from "./Components/Pricing";
 import Confirmation from "./Components/Shop/Checkout/Confirmation";
 import Productdetails from "./Components/Productdetails";
 import Contact from "./Components/Introduction/Contact/Contact";
@@ -27,6 +26,7 @@ import NavBar from "./Components/Layout/NavBar/NavBar";
 import FAQ from "./Components/Introduction/FAQ/FAQ";
 import Address from "./Components/Dashboard/Address";
 import Order from "./Components/Dashboard/Order";
+import FilterSection from "./Components/Shop/Shopping/FilterSection";
 
 function App() {
   return (
@@ -46,11 +46,13 @@ function App() {
       {/* <Address/> */}
       {/* <Order/> */}
       <Shop />
+      {/* <FilterSection/> */}
       {/* <Checkout/> */}
       {/* <Cart /> */}
       {/* <Pricing/> */}
       {/* <Confirmation/> */}
       {/* <Productdetails/> */}
+      {/* <ProductsCategory/> */}
 
       {/* contains pages walay links */}
       {/* <Contact /> */}
