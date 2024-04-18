@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const MenuItem = ({title,url}) => {
+const MenuItem = ({ title, url }) => {
   return (
     <li className="dropdown">
-    <a href={url}>{title}</a>
-  </li>
-  )
-}
+      <Link to={url}>{title}</Link>
+    </li>
+  );
+};
 
-export default MenuItem
+export default MenuItem;

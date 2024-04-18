@@ -7,12 +7,11 @@ const Order = () => {
   return (
     <>
       <Header title='Dashboard' page='orders history'/>
-
+      <DashboardMenu active="orders" />
     <section className="user-dashboard page-wrapper">
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <DashboardMenu active="orders" />
             <div className="dashboard-wrapper user-dashboard">
               <div className="table-responsive">
                 <table className="table">

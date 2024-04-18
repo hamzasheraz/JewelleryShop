@@ -25,6 +25,7 @@ function Cart() {
   return (
     <>
       <Header title="My Cart" page="cart" />
+      <DashboardMenu active="cart" />
       <div className="page-wrapper">
         <div className="cart shopping">
           <div className="container">

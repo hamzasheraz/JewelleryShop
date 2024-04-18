@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = ({title,page}) => {
   return (
@@ -9,7 +10,7 @@ const Header = ({title,page}) => {
 				<div className="content">
 					<h1 className="page-name">{title}</h1>
 					<ol className="breadcrumb">
-						<li><a href="index.html">Home</a></li>
+						<li><Link to="/home">Home</Link></li>
 						<li className="active">{page}</li>
 					</ol>
 				</div>
