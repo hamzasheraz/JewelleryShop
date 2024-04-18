@@ -1,9 +1,6 @@
 import { useState } from "react";
 import React from "react";
-// import Heroslider from "./Components/Heroslider";
 import "./App.css";
-// import "./plugins/slick/slick.css";
-// import "./plugins/slick/slick-theme.css";
 // In your main file where you include global styles
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -30,49 +27,19 @@ import Order from "./Components/Dashboard/Order";
 import FilterSection from "./Components/Shop/Shopping/FilterSection";
 import TrendyProduct from "./Components/Home/TrendyProduct";
 import HeroSlider from "./Components/Slider/HeroSlider";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <TopHeader />
-      <NavBar />
-      {/* general homebar k components */}
-
-    <HeroSlider/>
-
-      {/* <ProductsCategory/>
-    <ProductSections/>
-    <Subscription/> */}
-      {/* <About /> */}
-
-      {/* it all contains shop walay k links */}
-      {/* <Address/> */}
-      {/* <Order/> */}
-      {/* <Shop /> */}
-      {/* <FilterSection/> */}
-      {/* <Checkout/> */}
-      {/* <Cart /> */}
-      {/* <Pricing/> */}
-      {/* <Confirmation/> */}
-      {/* <ProductSections/> */}
-      {/* <Productdetails/> */}
-      {/* <ProductsCategory/> */}
-      {/* <TrendyProduct/> */}
-
-      {/* contains pages walay links */}
-      {/* <Contact /> */}
-      {/* <About/> */}
-      {/* <FAQ /> */}
-
-      {/* <Form/> */}
-
-      {/* <Dashboard/> */}
-      {/* <Order/> */}
-      {/* <Address/> */}
-      {/* <ProfileDetails/> */}
-
-      {/* <NotFound/> */}
-      <Footer />
+   <Routes>
+    <Route path="/" element={<Form page='login'/>}/>
+    <Route path="/sign-up" element={<Form page='register'/>}/>
+    <Route path="/forget-password" element={<Form page='forgot'/>}/>
+    <Route path="/home" element={<Form page='forgot'/>}/>
+    <Route path="*" element={<NotFound/>}/>
+    
+   </Routes>
     </>
   );
 }
