@@ -5,7 +5,6 @@ import "./App.css";
 import "./plugins/slick/slick.css";
 import "./plugins/slick/slick-theme.css";
 import "./plugins/animate/animate.css";
-import ProductSections from "./Components/ProductSections";
 import ProductsCategory from "./Components/ProductsCategory";
 import Subscription from "./Components/Layout/Footer/Subscription";
 import Footer from "./Components/Layout/Footer/Footer";
@@ -27,6 +26,7 @@ import FAQ from "./Components/Introduction/FAQ/FAQ";
 import Address from "./Components/Dashboard/Address";
 import Order from "./Components/Dashboard/Order";
 import FilterSection from "./Components/Shop/Shopping/FilterSection";
+import TrendyProduct from "./Components/Home/TrendyProduct";
 
 function App() {
   return (
@@ -45,14 +45,16 @@ function App() {
       {/* it all contains shop walay k links */}
       {/* <Address/> */}
       {/* <Order/> */}
-      <Shop />
+      {/* <Shop /> */}
       {/* <FilterSection/> */}
       {/* <Checkout/> */}
       {/* <Cart /> */}
       {/* <Pricing/> */}
       {/* <Confirmation/> */}
+      {/* <ProductSections/> */}
       {/* <Productdetails/> */}
       {/* <ProductsCategory/> */}
+      <TrendyProduct/>
 
       {/* contains pages walay links */}
       {/* <Contact /> */}
