@@ -1,9 +1,12 @@
 import { useState } from "react";
 import React from "react";
-import Heroslider from "./Components/Heroslider";
+// import Heroslider from "./Components/Heroslider";
 import "./App.css";
-import "./plugins/slick/slick.css";
-import "./plugins/slick/slick-theme.css";
+// import "./plugins/slick/slick.css";
+// import "./plugins/slick/slick-theme.css";
+// In your main file where you include global styles
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./plugins/animate/animate.css";
 import ProductsCategory from "./Components/Home/ProductsCategory";
 import Subscription from "./Components/Layout/Footer/Subscription";
@@ -13,7 +16,6 @@ import Shop from "./Components/Shop/Shopping/Shop";
 import Checkout from "./Components/Shop/Checkout/Checkout";
 import Cart from "./Components/Shop/Cart/Cart";
 import Confirmation from "./Components/Shop/Checkout/Confirmation";
-import Productdetails from "./Components/Productdetails";
 import Contact from "./Components/Introduction/Contact/Contact";
 import About from "./Components/Introduction/About/About";
 import Dashboard from "./Components/Dashboard/Dashboard";
@@ -27,6 +29,7 @@ import Address from "./Components/Dashboard/Address";
 import Order from "./Components/Dashboard/Order";
 import FilterSection from "./Components/Shop/Shopping/FilterSection";
 import TrendyProduct from "./Components/Home/TrendyProduct";
+import HeroSlider from "./Components/Slider/HeroSlider";
 
 function App() {
   return (
@@ -35,7 +38,7 @@ function App() {
       <NavBar />
       {/* general homebar k components */}
 
-      {/*    <Heroslider/> */}
+    <HeroSlider/>
 
       {/* <ProductsCategory/>
     <ProductSections/>
@@ -52,7 +55,7 @@ function App() {
       {/* <Pricing/> */}
       {/* <Confirmation/> */}
       {/* <ProductSections/> */}
-      <Productdetails/>
+      {/* <Productdetails/> */}
       {/* <ProductsCategory/> */}
       {/* <TrendyProduct/> */}
 
