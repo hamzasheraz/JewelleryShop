@@ -29,12 +29,12 @@ const NavBar = () => {
                 <MenuItem title="About Us" url="/about-us" />
                 <MenuItem title="FAQ" url="/faq" />
               </DropDownMenuItem>
-              <MenuItem title="Blog" url="/blog" />
+
               <DropDownMenuItem title="Dashboard">
                 <MenuItem title="Profile Interface" url="/my-profile" />
-                <MenuItem title="Orders" url='/my-orders' />
-                <MenuItem title="Address" url='/my-address' />
-                <MenuItem title="Details" url='/profile-info' />
+                <MenuItem title="Orders" url="/my-orders" />
+                <MenuItem title="Address" url="/my-address" />
+                <MenuItem title="Details" url="/profile-info" />
               </DropDownMenuItem>
               {/* Add more menu items as needed */}
             </ul>
