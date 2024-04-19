@@ -35,11 +35,11 @@ const Dashboard = () => {
     <>
       <Header title="Dashboard" page="dashboard" />
       <DashboardMenu active="dashboard" />
-      <section class="user-dashboard page-wrapper">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-            <div class="dashboard-wrapper user-dashboard">
+      <section className="user-dashboard page-wrapper">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+            <div className="dashboard-wrapper user-dashboard">
               <UserWelcome userName="Adam Smith" imageUrl="images/avater.jpg" />
               <OrderTable orders={orders} />
               </div>
