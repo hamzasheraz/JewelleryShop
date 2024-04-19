@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Confirmation() {
   return (
@@ -14,9 +15,9 @@ function Confirmation() {
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Inventore, sed.
                 </p>
-                <a href="shop.html" class="btn btn-main mt-20">
+                <Link to="/shop" class="btn btn-main mt-20">
                   Continue Shopping
-                </a>
+                </Link>
               </div>
             </div>
           </div>

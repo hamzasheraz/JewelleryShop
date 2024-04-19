@@ -16,6 +16,8 @@ import TrendyProduct from "../Components/Home/TrendyProduct";
 import HeroSlider from "../Components/Slider/HeroSlider";
 import {createBrowserRouter } from "react-router-dom";
 import NavigationBar from "../Components/Layout/NavBar/NavigationBar";
+import Confirmation from "../Components/Shop/Checkout/Confirmation";
+
 
 const router = createBrowserRouter([
     {
@@ -138,6 +140,16 @@ const router = createBrowserRouter([
         <>
           <NavigationBar />
           <ProfileDetails/>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/confirmation",
+      element: (
+        <>
+          <NavigationBar />
+          <Confirmation/>
           <Footer />
         </>
       ),

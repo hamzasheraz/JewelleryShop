@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CartNav = () => {
   return (
@@ -66,14 +67,14 @@ const CartNav = () => {
         </div>
         <ul className="text-center cart-buttons">
           <li>
-            <a href="cart.html" className="btn btn-small">
+            <Link to="/cart" className="btn btn-small">
               View Cart
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="checkout.html" className="btn btn-small btn-solid-border">
+            <Link to="/checkout" className="btn btn-small btn-solid-border">
               Checkout
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
