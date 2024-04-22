@@ -2339,13 +2339,13 @@
  }
 
  .scooby1{
-  background-image: url('./images/slider/slider-1.jpg');
+  background-image: url('../images/slider/slider-1.jpg');
  }
  .scooby2{
-  background-image: url('./images/slider/slider-3.jpg');
+  background-image: url('../images/slider/slider-3.jpg');
  }
  .scooby3{
-  background-image: url('./images/slider/slider-2.jpg');
+  background-image: url('../images/slider/slider-2.jpg');
  }
  /*# sourceMappingURL=style.css.map */
  
