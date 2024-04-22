@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
     <div className="col-md-4 col-xs-12 col-sm-4">
       <div className="logo text-center">
-        <a href="index.html">
+        <Link to="/home">
           {/* SVG Logo here */}
           <svg
             width="135px"
@@ -37,7 +38,7 @@ const Logo = () => {
               </g>
             </g>
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );
