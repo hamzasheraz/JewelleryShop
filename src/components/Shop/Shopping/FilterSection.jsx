@@ -1,12 +1,18 @@
 import React,{useState} from 'react'
 
-const FilterSection = () => {
-    const [selectedCategory, setSelectedCategory] = useState('Man');
-    const categories = [
-      { name: 'Shoes', items: ['Brand & Twist', 'Shoe Color', 'Shoe Color'] },
-      { name: 'Duty Wear', items: ['Brand & Twist', 'Shoe Color', 'Shoe Color'] },
-      { name: 'WorkOut Shoes', items: ['Brand & Twist', 'Shoe Color', 'Gladian Shoes', 'Swis Shoes'] }
-    ];
+const FilterSection = (props) => {
+    const [selectedCategory, setSelectedCategory] = useState('women');
+   
+    const changeCategory = (value) => {
+      setSelectedCategory(value);
+      props.setcat(value);
+      console.log(value);
+    };
+    // const categories = [
+    //   { name: 'Shoes', items: ['Brand & Twist', 'Shoe Color', 'Shoe Color'] },
+    //   { name: 'Duty Wear', items: ['Brand & Twist', 'Shoe Color', 'Shoe Color'] },
+    //   { name: 'WorkOut Shoes', items: ['Brand & Twist', 'Shoe Color', 'Gladian Shoes', 'Swis Shoes'] }
+    // ];
   
     return (
       <section className="products section">
@@ -16,15 +22,14 @@ const FilterSection = () => {
               <div className="widget">
                 <h4 className="widget-title">Short By</h4>
                 <form method="post" action="#">
-                  <select className="form-control" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-                    <option>Man</option>
-                    <option>Women</option>
+                  <select className="form-control" value={selectedCategory} onChange={(e) => changeCategory(e.target.value)}>
+                    <option>men</option>
+                    <option>women</option>
                     <option>Accessories</option>
-                    <option>Shoes</option>
                   </select>
                 </form>
               </div>
-              <div className="widget product-category">
+              {/* <div className="widget product-category">
                 <h4 className="widget-title">Categories</h4>
                 {categories.map((category, index) => (
                   <div className="panel-group commonAccordion" id="accordion" role="tablist" aria-multiselectable="true" key={index}>
@@ -48,7 +53,7 @@ const FilterSection = () => {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -57,3 +62,4 @@ const FilterSection = () => {
   };
   
   export default FilterSection;
+  

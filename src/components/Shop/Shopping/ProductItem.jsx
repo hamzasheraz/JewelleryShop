@@ -9,8 +9,8 @@ const ProductItem = ({ product }) => {
           {product.sale && <span className="bage">Sale</span>}
           <img
             className="img-responsive"
-            src={product.image}
-            alt={product.name}
+            src={"http://127.0.0.1:8000/"+product.image}
+            alt={product.Product_name}
           />
           <div className="preview-meta">
             <ul>
@@ -34,9 +34,9 @@ const ProductItem = ({ product }) => {
         </div>
         <div className="product-content">
           <h4>
-            <a href="product-single.html">{product.title}</a>
+            <a href="product-single.html">{product.Product_name}</a>
           </h4>
-          <p className="price">{product.price}</p>
+          <p className="price">{"Price :"+product.price}</p>
         </div>
       </div>
     </div>
