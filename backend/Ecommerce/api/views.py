@@ -1,11 +1,13 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import ShopProducts,ContactUs
 from .Serializers import ProductSerializer,ContactSerializer
 from .forms import RegistrationForm
+from django.contrib.auth.models import User
 
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -32,6 +34,7 @@ def getRoutes(request):
     return JsonResponse("Our Api",safe=False)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getProducts(request):
     Products=ShopProducts.objects.all()
     if(Products):
@@ -58,3 +61,21 @@ def registerUser(request):
                return Response("Sucessful",status=status.HTTP_200_OK) # Redirect to login page after successful registration
             else:
                 return Response("Error is coming",status=status.HTTP_400_BAD_REQUEST)
+            
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getuserdetails(request):
+     user=request.user
+     user_data={
+        'username': user.username,
+        'email': user.email,
+        'firstname':user.first_name,
+        'lastname':user.last_name,
+     }
+     return  Response(user_data)
+
+     
+     
+     
+     

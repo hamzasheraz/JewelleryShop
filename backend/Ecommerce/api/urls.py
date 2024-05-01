@@ -15,6 +15,7 @@ urlpatterns = [
     path('contactsubmit', views.addcontact, name="updatecontact"),
     path('register',views.registerUser,name="registering_user"),
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('getuser',views.getuserdetails,name="getuserdetails"),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 

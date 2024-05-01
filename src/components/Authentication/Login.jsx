@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import router from '../../Router/router';
+
 //import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 
@@ -12,6 +13,7 @@ const Login = (props) => {
   // const navigate = useNavigate();
   const [info, setInfo] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [loading, setloading] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,12 +27,13 @@ const Login = (props) => {
       console.log(response);
       const jwt_token = jwtDecode(response.data.access);
       console.log(jwt_token);
-      setInfo(jwt_token);
+      setInfo(response.data);
       cookies.set("jwt_auth", jwt_token, {
         expires: new Date(jwt_token.exp * 1000)
       });
       localStorage.setItem('authtokens', JSON.stringify(response.data));
-      props.setauth(false);
+      //setIsAuthenticated(false)
+      // props.setauth(false);
     //  <Redirect to='/home' />
     //navigate("/home");
 
@@ -40,7 +43,40 @@ const Login = (props) => {
     });
   };
   
+  let updateToken=()=>{
+    axios.post('http://127.0.0.1:8000/token/refresh/', {
+     'refresh':info.refresh
+   })
+   .then((response) => {
+     console.log(response,"from update");
+     const jwt_token = jwtDecode(response.data.access);
+     setInfo(response.data);
+     cookies.set("jwt_auth", jwt_token, {
+       expires: new Date(jwt_token.exp * 1000)
+     });
+     localStorage.setItem('authtokens', JSON.stringify(response.data));
+   }, (error) => {
+     //logout the user
 
+     localStorage.removeItem('authtoken')
+     props.setauth(true)
+     //not possible now but redirect the user to login page after logging out
+   });
+  }
+
+  //dont remove it.. It will be used when redux will be built
+
+  // useEffect(()=>{
+  //   let interval=setInterval(()=>{
+  //     if(info){
+  //       console.log("update token callled")
+  //       updateToken()
+  //     }
+  //   },2000)
+
+  //   return ()=>clearInterval(interval)
+
+  // },[info,loading])
 
   
   return (
