@@ -18,7 +18,6 @@ import {createBrowserRouter } from "react-router-dom";
 import NavigationBar from "../Components/Layout/NavBar/NavigationBar";
 import Confirmation from "../Components/Shop/Checkout/Confirmation";
 
-
 const router = createBrowserRouter([
     {
       path: "/",
@@ -37,6 +36,7 @@ const router = createBrowserRouter([
       element: (
         <>
           <NavigationBar />
+         
           <HeroSlider />
           <ProductsCategory />
           <TrendyProduct />
@@ -162,4 +162,4 @@ const router = createBrowserRouter([
     },
   ]);
 
-export default router
+export default router;

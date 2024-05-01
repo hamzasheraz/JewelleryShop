@@ -3,8 +3,11 @@ import NavBarHeader from "./NavBarHeader";
 // import NavBarLinks from "./NavBarLinks";
 import MenuItem from "./MenuItem";
 import DropDownMenuItem from "./DropDownMenuItem";
+import { Link } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const NavBar = () => {
+  // let history = useHistory();
   return (
     <section className="menu">
       <nav className="navbar navigation">
@@ -36,7 +39,13 @@ const NavBar = () => {
                 <MenuItem title="Address" url="/my-address" />
                 <MenuItem title="Details" url="/profile-info" />
               </DropDownMenuItem>
-              {/* Add more menu items as needed */}
+
+              <DropDownMenuItem>
+              <Link to="/">  <button onClick={()=>{
+                  localStorage.removeItem('authtokens')
+                }}>Logout</button></Link>
+              </DropDownMenuItem>
+          
             </ul>
           </div>
         </div>

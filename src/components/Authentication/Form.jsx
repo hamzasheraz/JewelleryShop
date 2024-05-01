@@ -5,7 +5,7 @@ import Login from "./Login";
 import Forgot from "./Forgot";
 import { Link } from "react-router-dom";
 
-const Form = ({ page }) => {
+const Form = ({ page,setAuth }) => {
   return (
     <section className="signin-page account">
       <div className="container">
@@ -16,7 +16,7 @@ const Form = ({ page }) => {
                 <img src={logo} alt="" />
               </Link>
               {page == "login" ? (
-                <Login />
+                <Login setauth={setAuth}/>
               ) : page == "register" ? (
                 <Signup />
               ) : (
