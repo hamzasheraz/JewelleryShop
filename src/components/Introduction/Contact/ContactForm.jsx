@@ -1,9 +1,27 @@
 import React from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const ContactForm = () => {
+  const [name,setname]=useState("")
+  const [email,setemail]=useState("")
+  const [subject,setsubject]=useState("")
+  const [message,setmessage]=useState("")
+
   // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios.post('http://127.0.0.1:8000/contactsubmit', {
+       name:name,
+       email:email,
+       subject:subject,
+       message:message
+    })
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
     // Form submission logic here
   };
 
@@ -24,7 +42,9 @@ const ContactForm = () => {
             name="name"
             id="name"
             required
-          />
+            value={name}
+            onChange={(e)=>{setname(e.target.value)}}
+          /> 
         </div>
 
         <div className="form-group">
@@ -35,6 +55,8 @@ const ContactForm = () => {
             name="email"
             id="email"
             required
+            value={email}
+            onChange={(e)=>{setemail(e.target.value)}}
           />
         </div>
 
@@ -46,6 +68,8 @@ const ContactForm = () => {
             name="subject"
             id="subject"
             required
+            value={subject}
+            onChange={(e)=>{setsubject(e.target.value)}}
           />
         </div>
 
@@ -57,6 +81,8 @@ const ContactForm = () => {
             name="message"
             id="message"
             required
+            value={message}
+            onChange={(e)=>{setmessage(e.target.value)}}
           ></textarea>
         </div>
 

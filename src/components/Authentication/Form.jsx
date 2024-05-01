@@ -4,7 +4,7 @@ import logo from "../../images/logo.png";
 import Login from "./Login";
 import Forgot from "./Forgot";
 
-const Form = ({ page }) => {
+const Form = ({ page,setAuth }) => {
   return (
     <section className="signin-page account">
       <div className="container">
@@ -15,7 +15,7 @@ const Form = ({ page }) => {
                 <img src={logo} alt="" />
               </a>
               {page == "login" ? (
-                <Login />
+                <Login setauth={setAuth}/>
               ) : page == "register" ? (
                 <Signup />
               ) : (

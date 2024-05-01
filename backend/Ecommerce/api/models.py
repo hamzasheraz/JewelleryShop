@@ -1,5 +1,10 @@
 from django.db import models
 
+# class User:
+#     email=models.EmailField(max_length=254,blank=False,null=False)
+#     image=models.ImageField(upload_to='djangouploads/files/covers')
+
+
 
 class ShopProducts(models.Model):
     Product_name=models.TextField(null=False,blank=False,max_length=50)
