@@ -1,10 +1,5 @@
 from django.db import models
-
-# class User:
-#     email=models.EmailField(max_length=254,blank=False,null=False)
-#     image=models.ImageField(upload_to='djangouploads/files/covers')
-
-
+from django.contrib.auth.models import User
 
 class ShopProducts(models.Model):
     Product_name=models.TextField(null=False,blank=False,max_length=50)
@@ -18,5 +13,12 @@ class ContactUs(models.Model):
      email= models.EmailField(max_length=70,blank=True,unique=True)
      subject=models.TextField(null=False,blank=False,max_length=50)
      message=models.TextField(null=False,blank=False,max_length=200)
+
+
+class Cart(models.Model):
+     user=models.ForeignKey(User,on_delete=models.CASCADE)
+     items=models.ForeignKey(ShopProducts,on_delete=models.CASCADE)
+     number_of_items=models.IntegerField(null=False,blank=False,default=1)
+
 
 # Create your models here.

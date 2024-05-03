@@ -1,27 +1,71 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CartTable from "./CartTable";
 import DashboardMenu from "../../Dashboard/DashboardMenu";
 import Header from "../../Layout/Page-Header/Header";
+import { useState } from "react";
+
+export async function getitems2(authToken) {
+  try {
+    console.log('Bearer ' + String(authToken.access), "Sending this");
+    let response = await fetch('http://127.0.0.1:8000/getcartitemstwo', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + String(authToken.access)
+      },
+    });
+    let data = await response.json();
+    if (response.status === 200) {
+      console.log(data, "data from cart items2");
+      return data;
+    }
+  } catch (error) {
+    console.error('Error fetching cart items2:', error);
+  }
+}
+
+export async function getitems(authToken) {
+  try {
+    console.log('Bearer ' + String(authToken.access), "Sending this");
+    let response = await fetch('http://127.0.0.1:8000/getcartitems', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + String(authToken.access)
+      },
+    });
+    let data = await response.json();
+    if (response.status === 200) {
+      console.log(data, "data from cart items");
+      return data;
+    }
+  } catch (error) {
+    console.error('Error fetching cart items:', error);
+  }
+}
+
 
 function Cart() {
-  const cartItems = [
-    {
-      name: "Sunglass",
-      price: "$200.00",
-      image: "/src/images/shop/cart/cart-1.jpg",
-    },
-    {
-      name: "Airspace",
-      price: "$200.00",
-      image: "/src/images/shop/cart/cart-2.jpg",
-    },
-    {
-      name: "Bingo",
-      price: "$200.00",
-      image: "/src/images/shop/cart/cart-3.jpg",
-    },
-    // Add more items here...
-  ];
+  const [nofitems, setItems] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+ 
+  const authToken = JSON.parse(localStorage.getItem('authtokens'));
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  async function fetchItems() {
+    const items = await getitems(authToken);
+    if (items) {
+      setCartItems(items);
+    }
+
+    const items2 = await getitems2(authToken);
+    if (items2) {
+      setItems(items2);
+    }
+  }
 
   return (
     <>
@@ -35,11 +79,12 @@ function Cart() {
                 <div className="block">
                   <div className="product-list">
                     <form method="post">
-                      <CartTable items={cartItems} />
-                      <a
-                        href="checkout.html"
-                        className="btn btn-main pull-right"
-                      >
+                      {cartItems && nofitems ? (
+                        <CartTable items1={cartItems} nofitems={nofitems} />
+                      ) : (
+                        <p>Not Avail</p>
+                      )}
+                      <a href="checkout.html" className="btn btn-main pull-right">
                         Checkout
                       </a>
                     </form>

@@ -4,6 +4,7 @@ import ProductItem from "./ProductItem";
 import ProductModal from "./ProductModal";
 import FilterSection from "./FilterSection";
 import { useEffect } from "react";
+
 import axios from 'axios';
 
 function Shop() {
