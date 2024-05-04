@@ -3,6 +3,7 @@ import CartTable from "./CartTable";
 import DashboardMenu from "../../Dashboard/DashboardMenu";
 import Header from "../../Layout/Page-Header/Header";
 import { useState } from "react";
+import CartNav from "../../Layout/TopHeaderBar/CartNav";
 
 export async function getitems2(authToken) {
   try {
@@ -80,7 +81,10 @@ function Cart() {
                   <div className="product-list">
                     <form method="post">
                       {cartItems && nofitems ? (
+                      
                         <CartTable items1={cartItems} nofitems={nofitems} />
+                        // <CartNav  items1={cartItems} nofitems={nofitems} />
+                        
                       ) : (
                         <p>Not Avail</p>
                       )}
