@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -181,6 +182,4 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 CORS_ALLOW_ALL_ORIGINS=True
-
