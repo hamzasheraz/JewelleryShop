@@ -1,9 +1,9 @@
 import React from "react";
-import "./App.css";
+import "./css/App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./plugins/animate/animate.css";
-import { RouterProvider} from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import router from "./Router/router";
 import Login from "./Components/Authentication/Login";
 import Form from "./Components/Authentication/Form";

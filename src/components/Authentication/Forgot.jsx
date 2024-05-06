@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Forgot = () => {
   return (
@@ -13,7 +14,7 @@ const Forgot = () => {
               <button type="submit" className="btn btn-main text-center">Request password reset</button>
             </div>
           </form>
-          <p className="mt-20"><a href="login.html">Back to log in</a></p>
+          <p className="mt-20"><Link to="/">Back to log in</Link></p>
     </>
   )
 }

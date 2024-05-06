@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework.response import Response
+<<<<<<< HEAD
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
@@ -8,6 +9,13 @@ from .models import ShopProducts,ContactUs,Cart
 from .Serializers import ProductSerializer,ContactSerializer,CartSerializer
 from .forms import RegistrationForm
 from django.contrib.auth.models import User
+=======
+from rest_framework.decorators import api_view
+from rest_framework import status
+from .models import ShopProducts,ContactUs
+from .Serializers import ProductSerializer,ContactSerializer
+from .forms import RegistrationForm
+>>>>>>> 1a5ca2cca2567f38d7fb50715b3a34877b1ea244
 
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -34,7 +42,10 @@ def getRoutes(request):
     return JsonResponse("Our Api",safe=False)
 
 @api_view(['GET'])
+<<<<<<< HEAD
 @permission_classes([IsAuthenticated])
+=======
+>>>>>>> 1a5ca2cca2567f38d7fb50715b3a34877b1ea244
 def getProducts(request):
     Products=ShopProducts.objects.all()
     if(Products):
@@ -60,6 +71,7 @@ def registerUser(request):
                form.save()
                return Response("Sucessful",status=status.HTTP_200_OK) # Redirect to login page after successful registration
             else:
+<<<<<<< HEAD
                 return Response("Error is coming",status=status.HTTP_400_BAD_REQUEST)
             
 
@@ -135,3 +147,6 @@ def delete_cart_item(request):
     
     cart_item.delete()
     return Response({"message": "Cart item deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+=======
+                return Response("Error is coming",status=status.HTTP_400_BAD_REQUEST)
+>>>>>>> 1a5ca2cca2567f38d7fb50715b3a34877b1ea244

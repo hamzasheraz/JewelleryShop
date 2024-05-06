@@ -106,7 +106,7 @@ const Signup = () => {
         </div>
         <div className="text-center">
           <button type="submit" className="btn btn-main text-center">
-            Sign In
+            Sign up
           </button>
         </div>
       </form>
