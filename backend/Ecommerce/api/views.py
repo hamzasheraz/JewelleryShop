@@ -1,14 +1,15 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.decorators import api_view,permission_classes
+from rest_framework.decorators import api_view,permission_classes,parser_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import ShopProducts,ContactUs,Cart,UserProfile
-from .Serializers import ProductSerializer,ContactSerializer,CartSerializer
+from .Serializers import ProductSerializer,ContactSerializer,CartSerializer,UserProfileSerializer,UserSerializer
 from .forms import RegistrationForm
 from django.templatetags.static import static
 from django.contrib.auth.models import User
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -141,3 +142,30 @@ def delete_cart_item(request):
     
     cart_item.delete()
     return Response({"message": "Cart item deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+@parser_classes([MultiPartParser, FormParser])  # Add this line
+def update_profile(request):
+    user = request.user
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        return Response({'error': 'User profile not found'}, status=status.HTTP_404_NOT_FOUND)
+    # Update User fields
+    user_serializer = UserSerializer(user, data=request.data, partial=True)
+    if user_serializer.is_valid():
+        user_serializer.save()
+    else:
+        print(user_serializer.errors)
+        return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Update UserProfile fields
+    profile_serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
+    if profile_serializer.is_valid():
+        profile_serializer.save()
+    else:
+        print(profile_serializer.errors)
+        return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response({'message': 'User data updated successfully'})

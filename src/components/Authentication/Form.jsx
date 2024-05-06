@@ -16,7 +16,7 @@ const Form = ({ page,setAuth }) => {
                 <img src={logo} alt="" />
               </Link>
               {page == "login" ? (
-                <Login setauth={setAuth}/>
+                <Login/>
               ) : page == "register" ? (
                 <Signup />
               ) : (

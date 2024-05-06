@@ -4,14 +4,21 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "universal-cookie";
 import { Link } from "react-router-dom";
 import router from "../../Router/router";
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const Login = (props) => {
+const Login = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const [info, setInfo] = useState(null);
   const [redirect, setRedirect] = useState(false);
   const [loading, setloading] = useState(true);
+  const [isAuthenticated, setAuth] = useState(false);
+
+  useEffect(() => {
+    console.log("checking");
+    const authTokens = localStorage.getItem("authtokens");
+    if (authTokens) setAuth(true);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +41,7 @@ const Login = (props) => {
         //setIsAuthenticated(false)
         // props.setauth(false);
         //  <Redirect to='/home' />
-        navigate("/home");
+       navigate("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +67,7 @@ const Login = (props) => {
           //logout the user
 
           localStorage.removeItem("authtoken");
-          props.setauth(true);
+          // props.setauth(true);
           //not possible now but redirect the user to login page after logging out
         }
       );
@@ -82,28 +89,38 @@ const Login = (props) => {
 
   return (
     <>
-      <h2 className="text-center">Welcome Back</h2>
-      <form className="text-left clearfix" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input className="form-control" name="email" placeholder="Email" />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            placeholder="Password"
-          />
-        </div>
-        <div className="text-center">
-          <button type="submit" className="btn btn-main text-center">
-            Login
-          </button>
-        </div>
-      </form>
-      <p className="mt-20">
-        New in this site? <Link to="/sign-up">Create a New Account</Link>
-      </p>
+      {isAuthenticated ? (
+        navigate("/home")
+      ) : (
+        <>
+          <h2 className="text-center">Welcome Back</h2>
+          <form className="text-left clearfix" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                className="form-control"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
+            <div className="text-center">
+              <button type="submit" className="btn btn-main text-center">
+                Login
+              </button>
+            </div>
+          </form>
+          <p className="mt-20">
+            New in this site? <Link to="/sign-up">Create a New Account</Link>
+          </p>
+        </>
+      )}
     </>
   );
 };
