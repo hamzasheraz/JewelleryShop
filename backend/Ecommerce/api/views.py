@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .models import ShopProducts,ContactUs,Cart
+from .models import ShopProducts,ContactUs,Cart,UserProfile
 from .Serializers import ProductSerializer,ContactSerializer,CartSerializer
 from .forms import RegistrationForm
+from django.templatetags.static import static
 from django.contrib.auth.models import User
 
 
@@ -66,14 +67,19 @@ def registerUser(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getuserdetails(request):
-     user=request.user
-     user_data={
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    avatar_url = profile.avatar.url if profile.avatar else static('default-avatar.png')
+
+    user_data = {
         'username': user.username,
         'email': user.email,
-        'firstname':user.first_name,
-        'lastname':user.last_name,
-     }
-     return  Response(user_data)
+        'firstname': user.first_name,
+        'lastname': user.last_name,
+        'avatar': request.build_absolute_uri(avatar_url),
+    }
+    return Response(user_data)
+
 
 
 @api_view(['POST'])
