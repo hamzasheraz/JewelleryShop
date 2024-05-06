@@ -30,7 +30,7 @@ const Login = (props) => {
           expires: new Date(jwt_token.exp * 1000),
         });
         localStorage.setItem("authtokens", JSON.stringify(response.data));
-        // props.setauth(false);
+         props.setauth(false);
         navigate("/home");
       })
       .catch((error) => {
