@@ -13,7 +13,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     console.log("checking")
     const authTokens = localStorage.getItem('authtokens');
-    return authTokens ? false : true;
+    return authTokens ? true:false;
   });
   return (
     <>

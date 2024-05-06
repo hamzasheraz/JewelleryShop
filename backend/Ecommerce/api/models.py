@@ -25,5 +25,12 @@ class Cart(models.Model):
      items=models.ForeignKey(ShopProducts,on_delete=models.CASCADE)
      number_of_items=models.IntegerField(null=False,blank=False,default=1)
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='djangouploads/files/avatars', null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
 
 # Create your models here.
