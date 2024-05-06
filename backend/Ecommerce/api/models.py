@@ -1,5 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,AbstractUser
+# from django.contrib.auth import get_user_model
+
+
+# User=get_user_model()
+
+
+# class CustomUser(AbstractUser):
+#       phone_number=models.CharField(max_length=100,unique=True)
+#       user_image=models.ImageField(upload_to='djangouploads/files/covers')
+#       birth_date = models.DateField(null=True, blank=True)
+
+
+
 
 class ShopProducts(models.Model):
     Product_name=models.TextField(null=False,blank=False,max_length=50)
@@ -16,9 +29,17 @@ class ContactUs(models.Model):
 
 
 class Cart(models.Model):
-     user=models.ForeignKey(User,on_delete=models.CASCADE)
-     items=models.ForeignKey(ShopProducts,on_delete=models.CASCADE)
-     number_of_items=models.IntegerField(null=False,blank=False,default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    items = models.ForeignKey(ShopProducts, on_delete=models.CASCADE)
+    number_of_items = models.IntegerField(null=False, blank=False, default=1)
+
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    birth_date = models.DateField(null=True, blank=True)
+    image=models.ImageField(upload_to='djangouploads/files/covers')
+    Phone_number=models.CharField(null=True,blank=True,max_length=11)
+
 
 
 # Create your models here.

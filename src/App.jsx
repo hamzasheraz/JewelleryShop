@@ -7,6 +7,7 @@ import { RouterProvider} from "react-router-dom";
 import router from "./Router/router";
 import Login from "./Components/Authentication/Login";
 import Form from "./Components/Authentication/Form";
+import Signup from "./Components/Authentication/Signup";
 import { useState } from "react";
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
     <>
       {/* <RouterProvider router={router} />  */}
       {
-       
-        !isAuthenticated?<RouterProvider router={router} /> :<Login setauth={setIsAuthenticated}/> 
+      
+        !isAuthenticated?<RouterProvider router={router} /> :  <Login setauth={setIsAuthenticated}/>
 
       }
     </>

@@ -4,14 +4,18 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .models import ShopProducts,ContactUs,Cart
-from .Serializers import ProductSerializer,ContactSerializer,CartSerializer
+from .models import ShopProducts,ContactUs,Cart,UserProfile
+from .Serializers import RegistrationSerializer,ProductSerializer,ContactSerializer,CartSerializer,UserSerializer,UserProfileSerializer
 from .forms import RegistrationForm
 from django.contrib.auth.models import User
+# from django.contrib.auth import get_user_model
 
+# User=get_user_model()
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+
+
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -52,27 +56,41 @@ def addcontact(request):
     return Response(serializer.data,status=status.HTTP_400_BAD_REQUEST)
 
 
+# @api_view(['POST'])
+# def registerUser(request):
+#             print("Hello")
+#             form = RegistrationForm(request.data)
+#             if form.is_valid():
+#                form.save()
+#                return Response("Sucessful",status=status.HTTP_200_OK) # Redirect to login page after successful registration
+#             else:
+#                 return Response("Error is coming",status=status.HTTP_400_BAD_REQUEST)
+            
+
 @api_view(['POST'])
 def registerUser(request):
-            print("Hello")
-            form = RegistrationForm(request.data)
-            if form.is_valid():
-               form.save()
-               return Response("Sucessful",status=status.HTTP_200_OK) # Redirect to login page after successful registration
-            else:
-                return Response("Error is coming",status=status.HTTP_400_BAD_REQUEST)
-            
+    serializer = RegistrationSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        return Response("Successful", status=status.HTTP_200_OK)  # Redirect to login page after successful registration
+    else:
+        print(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getuserdetails(request):
      user=request.user
-     user_data={
-        'username': user.username,
-        'email': user.email,
-        'firstname':user.first_name,
-        'lastname':user.last_name,
-     }
+     user_profile = UserProfile.objects.get(user=user)
+     user_data= {
+            'username': user.username,
+            'email': user.email,
+            'firstname': user.first_name,
+            'lastname': user.last_name,
+            'birth_date': user_profile.birth_date,
+            'Phone_number': user_profile.Phone_number,
+            'image': user_profile.image.url if user_profile.image else None,
+    }
      return  Response(user_data)
 
 
@@ -135,3 +153,61 @@ def delete_cart_item(request):
     
     cart_item.delete()
     return Response({"message": "Cart item deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_profile(request):
+    user = request.user
+    
+    # Retrieve UserProfile object
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        return Response({'error': 'User profile not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    # # Update User fields
+    # user_serializer = UserSerializer(user, data=request.data, partial=True)
+    # if user_serializer.is_valid():
+    #     user_serializer.save()
+    # else:
+    #     print(user_serializer.errors)
+    #     return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # Update UserProfile fields
+    profile_serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
+    print(user)
+    if profile_serializer.is_valid():
+        profile_serializer.save()
+    else:
+        print(profile_serializer.errors)
+        return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response({'message': 'User data updated successfully'})
+
+
+
+
+# @api_view(['PUT'])
+# @permission_classes([IsAuthenticated])
+# def update_profile(request):
+#     # Get the authenticated user
+#     user = request.user
+
+#     # Update the user fields
+#     user_serializer = UserSerializer(user, data=request.data, partial=True)
+#     if user_serializer.is_valid():
+#         user_serializer.save()
+#     else:
+#         return Response(user_serializer.errors, status=400)
+
+#     # Get the user profile associated with the authenticated user
+#     user_profile= UserProfile.objects.get(user=user)
+
+#     # Update the user profile with the provided data
+#     profile_serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
+#     if profile_serializer.is_valid():
+#         profile_serializer.save()
+#         return Response(profile_serializer.data)
+#     else:
+#         return Response(profile_serializer.errors, status=400)

@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import router from '../../Router/router';
+import Signup from './Signup';
 
 //import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
@@ -93,7 +94,7 @@ const Login = (props) => {
           <button type="submit" className="btn btn-main text-center">Login</button>
         </div>
       </form>
-      <p className="mt-20">New in this site? <a href="/sign-up">Create a New Account</a></p>
+      <p className="mt-20">New in this site? <a href="register">Create a new Account</a></p>
     </>
   );
 }
