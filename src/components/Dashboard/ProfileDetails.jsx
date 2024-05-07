@@ -1,36 +1,35 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import img1 from "../../images/avater.jpg";
 import Header from "../Layout/Page-Header/Header";
 import DashboardMenu from "./DashboardMenu";
 
 const ProfileDetails = () => {
-  const [profile,setProfile]=useState({})
+  const [profile, setProfile] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({});
   const [newImage, setNewImage] = useState(null);
-  const authToken = JSON.parse(localStorage.getItem('authtokens'));
+  const authToken = JSON.parse(localStorage.getItem("authtokens"));
 
-  useEffect(()=> {
-    getProfile()
-  }, [])
-    
-    let getProfile = async() =>{
-      console.log('Bearer ' + String(authToken.access),"Senidng this")
-      let response = await fetch('http://127.0.0.1:8000/getuser', {
-          method:'GET',
-          headers:{
-              'Content-Type':'application/json',
-              'Authorization':'Bearer ' + String(authToken.access)
-          }
-      })
-      let data = await response.json()
-      if(response.status === 200){
-              setProfile(data)
-              console.log(data)
-      }
-      
-  }
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  let getProfile = async () => {
+    console.log("Bearer " + String(authToken.access), "Senidng this");
+    let response = await fetch("http://127.0.0.1:8000/getuser", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + String(authToken.access),
+      },
+    });
+    let data = await response.json();
+    if (response.status === 200) {
+      setProfile(data);
+      console.log(data);
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -42,18 +41,19 @@ const ProfileDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
-   
+    console.log(formData);
+
     try {
       const response = await fetch("http://127.0.0.1:8000/updateuser", {
         method: "PUT",
         headers: {
           Authorization: "Bearer " + authToken.access,
-          'Content-Type': 'multipart/form-data'
+          "Content-Type": "multipart/form-data",
         },
-        body: formData,
+        body: String(formData),
       });
       if (response.ok) {
+        console.log(String(formData));
         const updatedProfile = await response.json();
         setProfile(updatedProfile);
         setEditMode(false);
@@ -73,7 +73,7 @@ const ProfileDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="dashboard-wrapper dashboard-user-profile">
-              <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div className="media">
                     <div className="pull-left text-center" href="#!">
                       <img
@@ -82,7 +82,11 @@ const ProfileDetails = () => {
                         alt="Profile"
                       />
                       {editMode && (
-                        <input type="file" name="image" onChange={handleImageChange} />
+                        <input
+                          type="file"
+                          name="image"
+                          onChange={handleImageChange}
+                        />
                       )}
                     </div>
                     <div className="media-body">
@@ -97,7 +101,7 @@ const ProfileDetails = () => {
                               onChange={handleChange}
                             />
                           ) : (
-                            profile.firstname+" "+profile.lastname
+                            profile.firstname + " " + profile.lastname
                           )}
                         </li>
                         <li>
@@ -143,7 +147,9 @@ const ProfileDetails = () => {
                       {editMode ? (
                         <button type="submit">Save Changes</button>
                       ) : (
-                        <button onClick={() => setEditMode(true)}>Edit Profile</button>
+                        <button onClick={() => setEditMode(true)}>
+                          Edit Profile
+                        </button>
                       )}
                     </div>
                   </div>
