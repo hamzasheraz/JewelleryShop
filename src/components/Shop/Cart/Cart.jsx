@@ -3,7 +3,7 @@ import CartTable from "./CartTable";
 import DashboardMenu from "../../Dashboard/DashboardMenu";
 import Header from "../../Layout/Page-Header/Header";
 import { useState } from "react";
-import CartNav from "../../Layout/TopHeaderBar/CartNav";
+import { Link } from "react-router-dom";
 
 export async function getitems2(authToken) {
   try {
@@ -17,7 +17,7 @@ export async function getitems2(authToken) {
     });
     let data = await response.json();
     if (response.status === 200) {
-      console.log(data, "data from cart items2");
+      // console.log(data, "data from cart items2");
       return data;
     }
   } catch (error) {
@@ -37,7 +37,7 @@ export async function getitems(authToken) {
     });
     let data = await response.json();
     if (response.status === 200) {
-      console.log(data, "data from cart items");
+      // console.log(data, "data from cart items");
       return data;
     }
   } catch (error) {
@@ -88,9 +88,9 @@ function Cart() {
                       ) : (
                         <p>Not Avail</p>
                       )}
-                      <a href="checkout.html" className="btn btn-main pull-right">
+                      <Link to="/checkout" className="btn btn-main pull-right">
                         Checkout
-                      </a>
+                      </Link>
                     </form>
                   </div>
                 </div>

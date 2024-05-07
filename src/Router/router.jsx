@@ -17,6 +17,7 @@ import HeroSlider from "../Components/Slider/HeroSlider";
 import {createBrowserRouter } from "react-router-dom";
 import NavigationBar from "../Components/Layout/NavBar/NavigationBar";
 import Confirmation from "../Components/Shop/Checkout/Confirmation";
+import Cancel from "../Components/Shop/Checkout/Cancel";
 
 const router = createBrowserRouter([
     {
@@ -145,11 +146,41 @@ const router = createBrowserRouter([
       ),
     },
     {
-      path: "/confirmation",
+      path: "/checkout/success",
       element: (
         <>
           <NavigationBar />
           <Confirmation/>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/checkout",
+      element: (
+        <>
+          <NavigationBar />
+          <Checkout/>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/checkout/success",
+      element: (
+        <>
+          <NavigationBar />
+          <Confirmation/>
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/checkout/failed",
+      element: (
+        <>
+          <NavigationBar />
+          <Cancel/>
           <Footer />
         </>
       ),

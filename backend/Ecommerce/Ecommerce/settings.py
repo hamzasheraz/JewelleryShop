@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import os
 
@@ -40,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
-     "corsheaders",
-     'rest_framework_simplejwt.token_blacklist'
+    "corsheaders",
+    'rest_framework_simplejwt.token_blacklist'
 ]
 
 REST_FRAMEWORK = {
@@ -51,7 +52,6 @@ REST_FRAMEWORK = {
     )
 
 }
-from datetime import timedelta
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=600),
@@ -61,7 +61,7 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": False,
 
     "ALGORITHM": "HS256",
- 
+
     "VERIFYING_KEY": "",
     "AUDIENCE": None,
     "ISSUER": None,
@@ -167,19 +167,19 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 
-MEDIA_URL=''
-MEDIA_ROOT=os.path.join(BASE_DIR,'')
+MEDIA_URL = ''
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-CORS_ALLOW_ALL_ORIGINS=True
+STRIPE_SECRET_KEY = 'sk_test_51PDp0KSJVDSn6bwh32mLLgjkvQORG8hxKw2PPchI6ZfelVcSOItlzsRmY5zddl6Rj4yQHXjOICujtXBYFFyIKv0U00blqzs3f7'
+STRIPE_WEBHOOK_SECRET = ' whsec_6e070e57ea68eec2584014d3dbf1f0bac9d71becf375887752eadb6417fa4217'
+CORS_ALLOW_ALL_ORIGINS = True
