@@ -32,7 +32,7 @@ const UserWelcome = () => {
       <div className="pull-left">
         <img
           className="media-object user-img"
-          src={profile.avatar}
+          src={profile.image ? "http://127.0.0.1:8000/" + profile.image : ""}
           alt="User Avatar"
         />
       </div>

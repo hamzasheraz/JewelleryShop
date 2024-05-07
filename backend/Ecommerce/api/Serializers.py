@@ -1,8 +1,9 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
-from .models import ShopProducts,ContactUs,Cart
+from .models import ShopProducts, ContactUs, Cart
 from django.contrib.auth.models import User
 from .models import UserProfile
+
 
 class RegistrationSerializer(serializers.Serializer):
     first_name = serializers.CharField()
@@ -10,9 +11,9 @@ class RegistrationSerializer(serializers.Serializer):
     username = serializers.CharField()
     email = serializers.EmailField()
     password = serializers.CharField()
-    birth_date = serializers.DateField(required=False)  
-    image = serializers.ImageField(required=False)  
-    Phone_number = serializers.CharField(required=False) 
+    birth_date = serializers.DateField(required=False)
+    image = serializers.ImageField(required=False)
+    Phone_number = serializers.CharField(required=False)
 
     def create(self, validated_data):
         print("hello")
@@ -34,30 +35,32 @@ class RegistrationSerializer(serializers.Serializer):
 
         return user
 
+
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-     model=ShopProducts
-     fields ='__all__'
+        model = ShopProducts
+        fields = '__all__'
 
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
-     model=ContactUs
-     fields ='__all__'
+        model = ContactUs
+        fields = '__all__'
+
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
-     model=Cart
-     fields ='__all__'
+        model = Cart
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-     model=User
-     fields ='__all__'
+        model = User
+        fields = '__all__'
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-     model=UserProfile
-     fields ='__all__'
+        model = UserProfile
+        fields = '__all__'

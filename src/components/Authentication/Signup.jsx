@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
@@ -164,7 +165,7 @@ const handleSubmit = (event) => {
         </div>
       </form>
       <p className="mt-20">
-        Already have an account? <a href="login.html">Login</a>
+        Already have an account? <Link to="/">Login</Link>
       </p>
       <p>
         <a href="forget-password.html">Forgot your password?</a>
