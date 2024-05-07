@@ -155,59 +155,133 @@ def delete_cart_item(request):
     return Response({"message": "Cart item deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def update_profile(request):
-    user = request.user
-    
-    # Retrieve UserProfile object
-    try:
-        user_profile = UserProfile.objects.get(user=user)
-    except UserProfile.DoesNotExist:
-        return Response({'error': 'User profile not found'}, status=status.HTTP_404_NOT_FOUND)
-
-    # # Update User fields
-    # user_serializer = UserSerializer(user, data=request.data, partial=True)
-    # if user_serializer.is_valid():
-    #     user_serializer.save()
-    # else:
-    #     print(user_serializer.errors)
-    #     return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # Update UserProfile fields
-    profile_serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
-    print(user)
-    if profile_serializer.is_valid():
-        profile_serializer.save()
-    else:
-        print(profile_serializer.errors)
-        return Response(profile_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    return Response({'message': 'User data updated successfully'})
-
-
-
-
 # @api_view(['PUT'])
 # @permission_classes([IsAuthenticated])
 # def update_profile(request):
-#     # Get the authenticated user
 #     user = request.user
+    
+#     # Retrieve UserProfile object
+#     try:
+#         user_profile = UserProfile.objects.get(user=user)
+#     except UserProfile.DoesNotExist:
+#         return Response({'error': 'User profile not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+#     # # Update User fields
+#     # user_serializer = UserSerializer(user, data=request.data, partial=True)
+#     # if user_serializer.is_valid():
+#     #     user_serializer.save()
+#     # else:
+#     #     print(user_serializer.errors)
+#     #     return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#     # Update the user fields
-#     user_serializer = UserSerializer(user, data=request.data, partial=True)
-#     if user_serializer.is_valid():
-#         user_serializer.save()
-#     else:
-#         return Response(user_serializer.errors, status=400)
-
-#     # Get the user profile associated with the authenticated user
-#     user_profile= UserProfile.objects.get(user=user)
-
-#     # Update the user profile with the provided data
+#     # Update UserProfile fields
+#     serializer=UserProfileSerializer(user_profile,many=False)
+#     return Response(serializer.data)
 #     profile_serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
 #     if profile_serializer.is_valid():
 #         profile_serializer.save()
 #         return Response(profile_serializer.data)
 #     else:
 #         return Response(profile_serializer.errors, status=400)
+
+#     return Response({'message': 'User data updated successfully'})
+
+
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_profile(request):
+    # Get the authenticated user
+    user = request.user
+
+    # Deserialize the JSON data from request.body
+    try:
+        data = request.data
+        print(data)
+    except Exception as e:
+        return Response({'error': str(e)}, status=400)
+
+    # Update the user fields
+    user_serializer = UserSerializer(user, data=data, partial=True)
+    if user_serializer.is_valid():
+        user_serializer.save()
+        return Response(user_serializer.data)
+    else:
+        return Response(user_serializer.errors, status=400)
+    
+from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
+from rest_framework.exceptions import ValidationError
+
+@api_view(['PUT'])
+def update_userprofile(request):
+    try:
+        # Accessing data from multipart form data
+        phone_number = request.data.get('Phone_number')
+        birth_date = request.data.get('birth_date')
+        image = request.data.get('image')
+    
+        user_id = request.data.get('user_id')
+
+        # Get the authenticated user's profile
+        user_profile = get_object_or_404(UserProfile, user_id=user_id)
+        print(user_profile)
+
+        # Update the user profile fields
+        
+        user_profile.Phone_number = phone_number
+        user_profile.birth_date = birth_date
+        user_profile.image = image
+        user_profile.save()
+
+        # Serialize and return the updated user profile
+        user_serializer = UserProfileSerializer(user_profile)
+        return Response(user_serializer.data)
+
+    except ValidationError as ve:
+        return Response({'error': str(ve)}, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        print("Error updating user profile:", e)
+        return Response({'error': 'Failed to update user profile'}, status=status.HTTP_400_BAD_REQUEST)
+
+# import json
+# from django.http import JsonResponse
+# @api_view(['PUT'])
+# def update_profile(request):
+#  if request.method == 'PUT':
+#         user = request.user
+        
+#         try:
+#             user_profile = UserProfile.objects.get(user=user)
+#         except UserProfile.DoesNotExist:
+#             return JsonResponse({'error': 'User profile not found'}, status=404)
+        
+#         # Get the JSON data from request body
+#         data = json.loads(request.body.decode('utf-8'))
+        
+#         # Update UserProfile fields
+#         try:
+#             if 'first_name' in data:
+#                 user.first_name = data['first_name']
+#             if 'last_name' in data:
+#                 user.last_name = data['last_name']
+#             if 'username' in data:
+#                 user.username = data['username']
+#             if 'email' in data:
+#                 user.email = data['email']
+#             if 'Phone_number' in data:
+#                 user_profile.Phone_number = data['Phone_number']
+#             if 'birth_date' in data:
+#                 user_profile.birth_date = data['birth_date']
+#             if 'image' in data:
+#                 user_profile.image = data['image']
+            
+#             user.save()
+#             user_profile.save()
+            
+#             return JsonResponse({'message': 'User data updated successfully'})
+#         except Exception as e:
+#             return JsonResponse({'error': str(e)}, status=400)
+#  else:
+#         return JsonResponse({'error': 'Only PUT requests are allowed'}, status=405)
