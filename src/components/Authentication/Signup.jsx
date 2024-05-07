@@ -7,9 +7,12 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [birthDate, setBirthDate] = useState(null); // Assuming birth date is a Date object
+  const [image, setImage] = useState(null); // Assuming image is a file
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, files } = event.target;
     switch (name) {
       case "firstName":
         setFirstName(value);
@@ -26,34 +29,53 @@ const Signup = () => {
       case "password":
         setPassword(value);
         break;
+      case "phoneNumber":
+        setPhoneNumber(value);
+        break;
+      case "birthDate":
+        setBirthDate(value);
+        break;
+      case "image":
+        setImage(files[0]);
+        break;
       default:
         break;
     }
   };
+const handleSubmit = (event) => {
+  event.preventDefault();
+  console.log(image);
+  
+  const formData = new FormData();
+  formData.append("first_name", firstName);
+  formData.append("last_name", lastName);
+  formData.append("username", username);
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("phone_number", phoneNumber);
+  formData.append("birth_date", birthDate);
+  formData.append("image", image);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios.post('http://127.0.0.1:8000/register', {
-      first_name: firstName,
-      last_name: lastName,
-      username: username,
-      email: email,
-      password: password
-    })
-      .then((response) => {
-        console.log(response);
-        // Handle success, such as redirecting the user to another page
-      })
-      .catch((error) => {
-        console.log(error);
-        // Handle error, such as displaying an error message to the user
-      });
-  };
+  axios.post("http://127.0.0.1:8000/register", formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+  .then((response) => {
+    console.log(response);
+    // Handle success, such as redirecting the user to another page
+  })
+  .catch((error) => {
+    console.log(error);
+    // Handle error, such as displaying an error message to the user
+  });
+};
+
 
   return (
     <>
       <h2 className="text-center">Create Your Account</h2>
-      <form className="text-left clearfix" onSubmit={handleSubmit}>
+      <form className="text-left clearfix" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">
           <input
             type="text"
@@ -101,6 +123,37 @@ const Signup = () => {
             placeholder="Password"
             name="password"
             value={password}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Phone Number"
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={handleChange}
+          />
+        </div>
+     
+        <div className="form-group">
+          <input
+            type="date"
+            className="form-control"
+            placeholder="Birth Date"
+            name="birthDate"
+            value={birthDate}
+            onChange={handleChange}
+          />
+        </div>
+      
+        <div className="form-group">
+          <input
+            type="file"
+            className="form-control-file"
+            name="image"
             onChange={handleChange}
           />
         </div>
