@@ -219,7 +219,10 @@ def update_profile(request):
         return Response(user_serializer.data)
     else:
         return Response(user_serializer.errors, status=400)
-
+    
+from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404
+from rest_framework.exceptions import ValidationError
 
 @api_view(['PUT'])
 def update_userprofile(request):
@@ -228,7 +231,7 @@ def update_userprofile(request):
         phone_number = request.data.get('Phone_number')
         birth_date = request.data.get('birth_date')
         image = request.data.get('image')
-
+    
         user_id = request.data.get('user_id')
 
         # Get the authenticated user's profile
@@ -236,7 +239,7 @@ def update_userprofile(request):
         print(user_profile)
 
         # Update the user profile fields
-
+        
         user_profile.Phone_number = phone_number
         user_profile.birth_date = birth_date
         user_profile.image = image
@@ -251,7 +254,6 @@ def update_userprofile(request):
     except Exception as e:
         print("Error updating user profile:", e)
         return Response({'error': 'Failed to update user profile'}, status=status.HTTP_400_BAD_REQUEST)
-
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 webhook_secret = settings.STRIPE_WEBHOOK_SECRET

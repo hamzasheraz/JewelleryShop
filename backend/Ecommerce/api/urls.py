@@ -3,6 +3,7 @@ from . import views
 from .views import WebHook, CreateCheckoutSession
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -28,6 +29,12 @@ urlpatterns = [
     path('webhook-test/', WebHook.as_view()),
     path('create-checkout-session/', CreateCheckoutSession.as_view(),
          name='create_checkout_session'),
+
+        #Forgot password urls
+    path('reset_password/',auth_views.PasswordResetView.as_view(),name="reset_password"),
+    path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(),name="password_reset_done"),
+    path('reset/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(),name="password_reset_confirm"),
+    path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(),name="password_reset_complete"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

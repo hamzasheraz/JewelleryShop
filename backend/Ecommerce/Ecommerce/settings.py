@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -183,3 +183,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_SECRET_KEY = 'sk_test_51PDp0KSJVDSn6bwh32mLLgjkvQORG8hxKw2PPchI6ZfelVcSOItlzsRmY5zddl6Rj4yQHXjOICujtXBYFFyIKv0U00blqzs3f7'
 STRIPE_WEBHOOK_SECRET = ' whsec_6e070e57ea68eec2584014d3dbf1f0bac9d71becf375887752eadb6417fa4217'
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'dilrafay@gmail.com'
+EMAIL_HOST_PASSWORD = ''

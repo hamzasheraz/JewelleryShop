@@ -119,6 +119,8 @@ const Login = () => {
           <p className="mt-20">
             New in this site? <Link to="/sign-up">Create a New Account</Link>
           </p>
+          <p className="mt-20">Forgot Password?<Link to="/forgot-password">Reset It.</Link></p>
+
         </>
       )}
     </>

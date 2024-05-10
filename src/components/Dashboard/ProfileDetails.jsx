@@ -91,8 +91,8 @@ const ProfileDetails = () => {
   };
   const updateUserProfile = async () => {
     let { Phone_number, birth_date, image } = formData;
-    console.log(image)
-    Phone_number="0345000"
+    // console.log(image)
+    // Phone_number="0345000"
     const jwt_token = jwtDecode(authToken.access);
   
     const formData1 = new FormData();
