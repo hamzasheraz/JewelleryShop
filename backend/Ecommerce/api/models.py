@@ -41,4 +41,15 @@ class UserProfile(models.Model):
     Phone_number = models.CharField(null=True, blank=True, max_length=11)
 
 
+class BillingDetails(models.Model):
+    email = models.EmailField(null=False, blank=False)
+    address = models.CharField(null=False, blank=False, max_length=100)
+    Zip_Code = models.CharField(null=False, blank=False, max_length=10)  # Assuming ZIP code might contain alphanumeric characters
+    City = models.CharField(null=False, blank=False, max_length=40)
+    Country = models.CharField(null=False, blank=False, max_length=40)
+    created_at = models.DateField(auto_now_add=True)
+
+
+
+
 # Create your models here.

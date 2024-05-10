@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import ShopProducts, ContactUs, Cart
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile,BillingDetails
 
 
 class RegistrationSerializer(serializers.Serializer):
@@ -64,3 +64,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = '__all__'
+
+
+
+class BillingDetailsSerializer(serializers.ModelSerializer):
+        class Meta:
+         model =BillingDetails
+         fields = '__all__'

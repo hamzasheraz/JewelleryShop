@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view, permission_classes, parser_class
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import ShopProducts, ContactUs, Cart, UserProfile
-from .Serializers import RegistrationSerializer, ProductSerializer, ContactSerializer, CartSerializer, UserSerializer, UserProfileSerializer
+from .Serializers import RegistrationSerializer, ProductSerializer, ContactSerializer, CartSerializer, UserSerializer, UserProfileSerializer,BillingDetailsSerializer
 from .forms import RegistrationForm
 from django.templatetags.static import static
 from django.contrib.auth.models import User
@@ -362,3 +362,15 @@ class WebHook(APIView):
 #             return JsonResponse({'error': str(e)}, status=400)
 #  else:
 #         return JsonResponse({'error': 'Only PUT requests are allowed'}, status=405)
+
+
+
+
+@api_view(['POST'])
+def create_billing_details(request):
+        serializer = BillingDetailsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        print(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
