@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Confirmation() {
+  const authToken = JSON.parse(localStorage.getItem('authtokens'));
+  useEffect(()=>{
+    deleteallcart();
+  },[])
+
+  let deleteallcart = async (id1) => {
+    console.log('Bearer ' + String(authToken.access), "Sending this");
+    let response = await fetch('http://127.0.0.1:8000/deleteallcart', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + String(authToken.access)
+      }
+    });
+  }
   return (
     <>
       <section class="page-wrapper success-msg">

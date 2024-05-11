@@ -26,7 +26,8 @@ urlpatterns = [
     path('addtocart', views.storeincart, name="storeincart"),
     path('getuser', views.getuserdetails, name="getuserdetails"),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('updateuser', views.update_profile, name="updateuser"),
+    
+    path('deleteallcart', views.delete_cart, name="deleteallcart"),
     path('webhook-test/', WebHook.as_view()),
     path('create-checkout-session/', CreateCheckoutSession.as_view(),
          name='create_checkout_session'),

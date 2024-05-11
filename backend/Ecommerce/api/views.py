@@ -15,6 +15,7 @@ from .Serializers import RegistrationSerializer, ProductSerializer, ContactSeria
 from .forms import RegistrationForm
 from django.templatetags.static import static
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.views import APIView
 import stripe
 from django.shortcuts import render
@@ -374,3 +375,20 @@ def create_billing_details(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_cart(request):
+    try:
+        # Retrieve the cart item for the current user
+        cart_item = Cart.objects.filter(user=request.user)
+        
+        # Delete the cart item
+        cart_item.delete()
+        
+        # Return a success response
+        return Response({"message": "Cart item deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+    except ObjectDoesNotExist:
+        # Handle case where the cart item for the user does not exist
+        return Response({"message": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
