@@ -1,4 +1,3 @@
-// ProductSummary.jsx
 import React from "react";
 
 const ProductSummary = ({ product }) => {

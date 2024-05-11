@@ -1,44 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getitems, getitems2 } from "../../Shop/Cart/Cart";
+import { useSelector } from "react-redux";
 
 const CartNav = () => {
-  const [total,settotal]=useState(0)
-  const [nofitems, setItems] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
- 
-  const authToken = JSON.parse(localStorage.getItem('authtokens'));
+  const cart = useSelector((state) => state.cart);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const authToken = JSON.parse(localStorage.getItem("authtokens"));
 
   useEffect(() => {
-    fetchItems();
-  }, []);
-
-  async function fetchItems() {
-    const items = await getitems(authToken);
-    if (items) {
-      setCartItems(items);
+    let p = 0;
+    if (cart.items2 && cart.items) {
+      cart.items.forEach((item, index) => {
+        p += item.price * (cart.items2[index]?.number_of_items || 0);
+      });
     }
-
-    const items2 = await getitems2(authToken);
-    if (items2) {
-      setItems(items2);
-      console.log("I am here in logo wala page")
-    }
-  }
-
-
-  let calculate=()=>{
-    let p=0;
-    nofitems && cartItems.forEach((value, index) => {
-      if (value.id ==nofitems[index].items) {
-        console.log(index)
-        p += value.price * nofitems[index].number_of_items;
-      }
-    })
-    console.log("price is ",p)
-    return p;
-
-  }
+    setTotalPrice(p);
+  }, [cart.items2, cart.items]); // Dependencies array
 
   return (
     <li className="dropdown cart-nav dropdown-slide">
@@ -51,35 +28,39 @@ const CartNav = () => {
         <i className="tf-ion-android-cart"></i>Cart
       </a>
       <div className="dropdown-menu cart-dropdown">
-        {nofitems && cartItems && cartItems.map((item, index) => ( 
-          <div key={index} className="media">
-            <a className="pull-left" href="#!">
-              <img
-                className="media-object"
-                src={"http://127.0.0.1:8000/" + item.image} 
-                alt={item.name}
-              />
-            </a>
-            <div className="media-body">
-              <h4 className="media-heading">
-                <a href="#!">{item.Product_name}</a> 
-              </h4>
-              <div className="cart-price">
-                <span>1 x</span>
-                <span>{nofitems[index].number_of_items}</span> 
+        {cart.items2 &&
+          cart.items &&
+          cart.items.map((item, index) => (
+            <div key={index} className="media">
+              <a className="pull-left" href="#!">
+                <img
+                  className="media-object"
+                  src={"http://127.0.0.1:8000/" + item.image}
+                  alt={item.name}
+                />
+              </a>
+              <div className="media-body">
+                <h4 className="media-heading">
+                  <a href="#!">{item.Product_name}</a>
+                </h4>
+                <div className="cart-price">
+                  <span>1 x</span>
+                  <span>{cart.items2[index]?.number_of_items}</span>
+                </div>
+                <h5>
+                  <strong>
+                    ${item.price * cart.items2[index]?.number_of_items}
+                  </strong>
+                </h5>
               </div>
-              <h5>
-                <strong>${item.price*nofitems[index].number_of_items}</strong> 
-              </h5>
+              <a href="/cart" className="remove">
+                <i className="tf-ion-close"></i>
+              </a>
             </div>
-            <a href="/cart" className="remove">
-              <i className="tf-ion-close"></i>
-            </a>
-          </div>
-        ))}
+          ))}
         <div className="cart-summary">
           <span>Total</span>
-          <span className="total-price">{calculate()}</span>
+          <span className="total-price">{totalPrice}</span>
         </div>
         <ul className="text-center cart-buttons">
           <li>

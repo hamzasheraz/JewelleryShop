@@ -1,22 +1,14 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deletAllCartItem } from "../../../redux/slices/CartSlice/cartSlice";
 
 function Confirmation() {
-  const authToken = JSON.parse(localStorage.getItem('authtokens'));
-  useEffect(()=>{
-    deleteallcart();
-  },[])
-
-  let deleteallcart = async (id1) => {
-    console.log('Bearer ' + String(authToken.access), "Sending this");
-    let response = await fetch('http://127.0.0.1:8000/deleteallcart', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + String(authToken.access)
-      }
-    });
-  }
+  const dispatch = useDispatch();
+  const authToken = JSON.parse(localStorage.getItem("authtokens"));
+  useEffect(() => {
+    dispatch(deletAllCartItem());
+  }, []);
   return (
     <>
       <section class="page-wrapper success-msg">
@@ -38,7 +30,6 @@ function Confirmation() {
           </div>
         </div>
       </section>
-
     </>
   );
 }

@@ -8,11 +8,6 @@ const FilterSection = (props) => {
       props.setcat(value);
       console.log(value);
     };
-    // const categories = [
-    //   { name: 'Shoes', items: ['Brand & Twist', 'Shoe Color', 'Shoe Color'] },
-    //   { name: 'Duty Wear', items: ['Brand & Twist', 'Shoe Color', 'Shoe Color'] },
-    //   { name: 'WorkOut Shoes', items: ['Brand & Twist', 'Shoe Color', 'Gladian Shoes', 'Swis Shoes'] }
-    // ];
   
     return (
       <section className="products section">

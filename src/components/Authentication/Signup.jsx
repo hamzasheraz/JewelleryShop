@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/slices/UserSlice/userSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -43,40 +46,30 @@ const Signup = () => {
         break;
     }
   };
-const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log(image);
-  
-  const formData = new FormData();
-  formData.append("first_name", firstName);
-  formData.append("last_name", lastName);
-  formData.append("username", username);
-  formData.append("email", email);
-  formData.append("password", password);
-  formData.append("phone_number", phoneNumber);
-  formData.append("birth_date", birthDate);
-  formData.append("image", image);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const userData = {
+      first_name: firstName,
+      last_name: lastName,
+      username: username,
+      email: email,
+      password: password,
+      phone_number: phoneNumber,
+      birth_date: birthDate,
+      image: image,
+    };
 
-  axios.post("http://127.0.0.1:8000/register", formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  })
-  .then((response) => {
-    console.log(response);
-    // Handle success, such as redirecting the user to another page
-  })
-  .catch((error) => {
-    console.log(error);
-    // Handle error, such as displaying an error message to the user
-  });
-};
-
+    dispatch(registerUser(userData)).unwrap();
+  };
 
   return (
     <>
       <h2 className="text-center">Create Your Account</h2>
-      <form className="text-left clearfix" onSubmit={handleSubmit} encType="multipart/form-data">
+      <form
+        className="text-left clearfix"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <div className="form-group">
           <input
             type="text"
@@ -138,7 +131,7 @@ const handleSubmit = (event) => {
             onChange={handleChange}
           />
         </div>
-     
+
         <div className="form-group">
           <input
             type="date"
@@ -149,7 +142,7 @@ const handleSubmit = (event) => {
             onChange={handleChange}
           />
         </div>
-      
+
         <div className="form-group">
           <input
             type="file"

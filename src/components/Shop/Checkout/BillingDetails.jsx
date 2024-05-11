@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { postBillingDetails } from "../../../redux/slices/BillSlice/billSlice";
 
 const BillingDetails = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
@@ -10,23 +13,24 @@ const BillingDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/billing-details", {
-        email:email,
-        address:address,
-        Zip_Code: zipCode,
-        City: city,
-        Country: country
-      });
-      console.log("Response:", response.data);
-      if(response){
-        alert("Details submitted sucessfully")
-      }
-      // Handle success or redirect to another page
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle error
-    }
+    dispatch(postBillingDetails({ email, address, zipCode, city, country }));
+    // try {
+    //   const response = await axios.post("http://127.0.0.1:8000/billing-details", {
+    //     email:email,
+    //     address:address,
+    //     Zip_Code: zipCode,
+    //     City: city,
+    //     Country: country
+    //   });
+    //   console.log("Response:", response.data);
+    //   if(response){
+    //     alert("Details submitted sucessfully")
+    //   }
+    //   // Handle success or redirect to another page
+    // } catch (error) {
+    //   console.error("Error:", error);
+    //   // Handle error
+    // }
   };
 
   return (
@@ -90,7 +94,9 @@ const BillingDetails = () => {
             onChange={(e) => setCountry(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );

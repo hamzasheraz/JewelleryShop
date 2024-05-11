@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import Cookies from 'universal-cookie';
-import { Link,useNavigate } from 'react-router-dom';
-import router from '../../Router/router';
-import Signup from './Signup';
+import Cookies from "universal-cookie";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchUserDetails } from "../../redux/slices/UserSlice/userSlice";
+import { fetchProductDetails } from "../../redux/slices/ProductSlice/productSlice";
+import { fetchCartItems } from "../../redux/slices/CartSlice/cartSlice";
+import { fetchCartNoItems } from "../../redux/slices/CartSlice/cartSlice";
 
 const Login = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
   const [info, setInfo] = useState(null);
-  const [redirect, setRedirect] = useState(false);
-  const [loading, setloading] = useState(true);
+  const dispatch = useDispatch();
   const [isAuthenticated, setAuth] = useState(false);
 
   useEffect(() => {
@@ -30,18 +32,17 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
-        console.log(response);
         const jwt_token = jwtDecode(response.data.access);
-        console.log(jwt_token);
         setInfo(response.data);
         cookies.set("jwt_auth", jwt_token, {
           expires: new Date(jwt_token.exp * 1000),
         });
         localStorage.setItem("authtokens", JSON.stringify(response.data));
-        //setIsAuthenticated(false)
-        // props.setauth(false);
-        //  <Redirect to='/home' />
-       navigate("/home");
+        dispatch(fetchUserDetails());
+        dispatch(fetchProductDetails());
+        dispatch(fetchCartItems());
+        dispatch(fetchCartNoItems());
+        navigate("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -119,8 +120,9 @@ const Login = () => {
           <p className="mt-20">
             New in this site? <Link to="/sign-up">Create a New Account</Link>
           </p>
-          <p className="mt-20">Forgot Password?<Link to="/forgot-password">Reset It.</Link></p>
-
+          <p className="mt-20">
+            Forgot Password?<Link to="/forgot-password">Reset It.</Link>
+          </p>
         </>
       )}
     </>
