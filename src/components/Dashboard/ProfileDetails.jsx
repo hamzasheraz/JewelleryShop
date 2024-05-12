@@ -3,7 +3,6 @@ import Header from "../Layout/Page-Header/Header";
 import DashboardMenu from "./DashboardMenu";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  fetchUserDetails,
   updateUserDetails,
   updateUserProfile,
 } from "../../redux/slices/UserSlice/userSlice";
@@ -26,7 +25,8 @@ const ProfileDetails = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(updateUserDetails(formData));
-    dispatch(updateUserProfile({ ...formData, newImage: newImage }));
+    if (user.isLoading === false)
+      dispatch(updateUserProfile({ ...formData, newImage: newImage }));
     setEditMode(false);
   };
 
@@ -44,11 +44,11 @@ const ProfileDetails = () => {
                     <div className="pull-left text-center" href="#!">
                       <img
                         className="media-object user-img"
-                        src={user.isLoading===false &&(
-                          user.data?.image
+                        src={
+                          user.isLoading === false &&
+                          (user.data?.image
                             ? "http://127.0.0.1:8000/" + user.data?.image
-                            : ""
-                        )
+                            : "")
                         }
                         alt="Profile"
                       />

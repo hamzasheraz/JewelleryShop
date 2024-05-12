@@ -3,6 +3,18 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/slices/UserSlice/userSlice";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
+
 const Signup = () => {
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
@@ -59,6 +71,10 @@ const Signup = () => {
     };
 
     dispatch(registerUser(userData)).unwrap();
+    Toast.fire({
+      icon: "success",
+      title: "ACcount registered",
+    });
   };
 
   return (
