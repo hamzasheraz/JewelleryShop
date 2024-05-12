@@ -71,6 +71,10 @@ export const deleteCartItem = createAsyncThunk(
       if (!response.ok) {
         throw new Error("Failed to delete");
       }
+      if (response.status === 204) {
+        // Return a specific payload or simply return to indicate success
+        return { id: id1, deleted: true };
+      }
       return response.json();
     } catch (error) {
       return rejectWithValue(error.message);
@@ -143,8 +147,13 @@ const cartSlice = createSlice({
         state.errorMessage = action.payload;
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
-        state.items = state.items.filter((item) => item.id !== action.meta.arg);
-        console.log("action", state);
+        const index = state.items2.findIndex(
+          (items) => items.id === action.meta.arg
+        );
+        state.items = state.items.filter((item,id) => id !== index);
+        state.items2 = state.items2.filter(
+          (item) => item.id !== action.meta.arg
+        );
         state.isLoading = false;
       })
       .addCase(deleteCartItem.pending, (state) => {
@@ -152,6 +161,7 @@ const cartSlice = createSlice({
       })
       .addCase(deleteCartItem.rejected, (state, action) => {
         state.isError = true;
+        console.log("action3");
         state.errorMessage = action.payload;
       })
       .addCase(deletAllCartItem.fulfilled, (state, action) => {
@@ -172,10 +182,8 @@ const cartSlice = createSlice({
         if (index !== -1) {
           state.items2[index].number_of_items += action.meta.arg.numberofitems;
         } else {
-          console.log(action);
           state.items = [...state.items, action.meta.arg.product];
           state.items2 = [...state.items2, action.payload.data];
-
         }
         state.isLoading = false;
       })
