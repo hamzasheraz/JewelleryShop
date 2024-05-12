@@ -166,6 +166,7 @@ const cartSlice = createSlice({
       })
       .addCase(deletAllCartItem.fulfilled, (state, action) => {
         state.items = [];
+        state.items2 = [];
         state.isLoading = false;
       })
       .addCase(deletAllCartItem.pending, (state) => {
