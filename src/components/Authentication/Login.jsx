@@ -18,7 +18,7 @@ const Toast = Swal.mixin({
   didOpen: (toast) => {
     toast.onmouseenter = Swal.stopTimer;
     toast.onmouseleave = Swal.resumeTimer;
-  }
+  },
 });
 
 const Login = () => {
@@ -56,11 +56,15 @@ const Login = () => {
         dispatch(fetchCartNoItems());
         Toast.fire({
           icon: "success",
-          title: "Signed in successfully"
+          title: "Signed in successfully",
         });
         navigate("/home");
       })
       .catch((error) => {
+        Toast.fire({
+          icon: "error",
+          title: "Wrong email or password",
+        });
         console.log(error);
       });
   };
