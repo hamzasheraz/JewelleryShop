@@ -23,7 +23,12 @@ export const addToCart = createAsyncThunk(
       if (!response.ok) {
         throw new Error("Failed to add to cart");
       }
-      return await response.json();
+      const productSlice = getState().product;
+      const data = await response.json();
+      return {
+        data,
+        product: productSlice.data.find((p) => p.id === product.id),
+      };
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -167,9 +172,11 @@ const cartSlice = createSlice({
         if (index !== -1) {
           state.items2[index].number_of_items += action.meta.arg.numberofitems;
         } else {
-          state.items2 = [...state.items2, action.payload];
-        }
+          console.log(action);
+          state.items = [...state.items, action.meta.arg.product];
+          state.items2 = [...state.items2, action.payload.data];
 
+        }
         state.isLoading = false;
       })
       .addCase(addToCart.pending, (state) => {
