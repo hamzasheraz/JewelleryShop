@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view, permission_classes, parser_class
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .models import ShopProducts, ContactUs, Cart, UserProfile
-from .Serializers import RegistrationSerializer, ProductSerializer, ContactSerializer, CartSerializer, UserSerializer, UserProfileSerializer,BillingDetailsSerializer
+from .Serializers import RegistrationSerializer, ProductSerializer, ContactSerializer, CartSerializer, UserSerializer, UserProfileSerializer, BillingDetailsSerializer
 from .forms import RegistrationForm
 from django.templatetags.static import static
 from django.contrib.auth.models import User
@@ -118,7 +118,7 @@ def storeincart(request):
         items = serializer.validated_data['items']
         existing_cart = Cart.objects.filter(user=user, items=items).first()
         if existing_cart:
-            existing_cart.number_of_items += 1
+            existing_cart.number_of_items += request.data['number_of_items']
             existing_cart.save()
             return Response(CartSerializer(existing_cart).data, status=status.HTTP_200_OK)
 
@@ -220,10 +220,7 @@ def update_profile(request):
         return Response(user_serializer.data)
     else:
         return Response(user_serializer.errors, status=400)
-    
-from rest_framework.authtoken.models import Token
-from django.shortcuts import get_object_or_404
-from rest_framework.exceptions import ValidationError
+
 
 @api_view(['PUT'])
 def update_userprofile(request):
@@ -232,7 +229,7 @@ def update_userprofile(request):
         phone_number = request.data.get('Phone_number')
         birth_date = request.data.get('birth_date')
         image = request.data.get('image')
-    
+
         user_id = request.data.get('user_id')
 
         # Get the authenticated user's profile
@@ -240,7 +237,7 @@ def update_userprofile(request):
         print(user_profile)
 
         # Update the user profile fields
-        
+
         user_profile.Phone_number = phone_number
         user_profile.birth_date = birth_date
         user_profile.image = image
@@ -255,6 +252,7 @@ def update_userprofile(request):
     except Exception as e:
         print("Error updating user profile:", e)
         return Response({'error': 'Failed to update user profile'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 webhook_secret = settings.STRIPE_WEBHOOK_SECRET
@@ -365,16 +363,14 @@ class WebHook(APIView):
 #         return JsonResponse({'error': 'Only PUT requests are allowed'}, status=405)
 
 
-
-
 @api_view(['POST'])
 def create_billing_details(request):
-        serializer = BillingDetailsSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer = BillingDetailsSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    print(serializer.errors)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["DELETE"])
@@ -383,10 +379,10 @@ def delete_cart(request):
     try:
         # Retrieve the cart item for the current user
         cart_item = Cart.objects.filter(user=request.user)
-        
+
         # Delete the cart item
         cart_item.delete()
-        
+
         # Return a success response
         return Response({"message": "Cart item deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
     except ObjectDoesNotExist:

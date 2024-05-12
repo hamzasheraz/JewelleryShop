@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {jwtDecode} from "jwt-decode"; // Ensure jwt-decode is imported if used
+import { jwtDecode } from "jwt-decode"; // Ensure jwt-decode is imported if used
+import { current } from "@reduxjs/toolkit";
 
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
@@ -41,6 +42,9 @@ export const deletAllCartItem = createAsyncThunk(
           String(JSON.parse(localStorage.getItem("authtokens")).access),
       },
     });
+    if (!response.ok) {
+      throw new Error("Failed to delete");
+    }
     return response.json();
   }
 );
@@ -59,6 +63,9 @@ export const deleteCartItem = createAsyncThunk(
         },
         body: JSON.stringify({ id: id1 }),
       });
+      if (!response.ok) {
+        throw new Error("Failed to delete");
+      }
       return response.json();
     } catch (error) {
       return rejectWithValue(error.message);
@@ -102,7 +109,6 @@ const cartSlice = createSlice({
     items: null,
     items2: null,
     isError: false,
-    addCartStatus: "idle",
     errorMessage: "",
   },
   extraReducers: (builder) => {
@@ -133,6 +139,8 @@ const cartSlice = createSlice({
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
         state.items = state.items.filter((item) => item.id !== action.meta.arg);
+        console.log("action", state);
+        state.isLoading = false;
       })
       .addCase(deleteCartItem.pending, (state) => {
         state.isLoading = true;
@@ -143,6 +151,7 @@ const cartSlice = createSlice({
       })
       .addCase(deletAllCartItem.fulfilled, (state, action) => {
         state.items = [];
+        state.isLoading = false;
       })
       .addCase(deletAllCartItem.pending, (state) => {
         state.isLoading = true;
@@ -152,15 +161,22 @@ const cartSlice = createSlice({
         state.errorMessage = action.payload;
       })
       .addCase(addToCart.fulfilled, (state, action) => {
-        state.addCartStatus = "succeeded";
-        // Update the cart items with the new item
-        state.items = [...state.items, action.payload];
+        const index = state.items2.findIndex(
+          (item) => item.items === action.meta.arg.product.id
+        );
+        if (index !== -1) {
+          state.items2[index].number_of_items += action.meta.arg.numberofitems;
+        } else {
+          state.items2 = [...state.items2, action.payload];
+        }
+
+        state.isLoading = false;
       })
       .addCase(addToCart.pending, (state) => {
-        state.addCartStatus = "loading";
+        state.isLoading = true;
       })
       .addCase(addToCart.rejected, (state, action) => {
-        state.addCartStatus = "failed";
+        state.isLoading = false;
         state.errorMessage = action.payload;
       });
   },

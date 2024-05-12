@@ -2,7 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart, fetchCartItems, fetchCartNoItems } from "../../../redux/slices/CartSlice/cartSlice";
+import { addToCart } from "../../../redux/slices/CartSlice/cartSlice";
 
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -56,9 +56,8 @@ const ProductItem = ({ product }) => {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(addToCart({ product, numberofitems }))
-                    dispatch(fetchCartItems());
-                    dispatch(fetchCartNoItems());
+                    dispatch(addToCart({ product, numberofitems }));
+                    setnumberofitems(1);
                   }}
                 >
                   <i className="tf-ion-android-cart"></i>
