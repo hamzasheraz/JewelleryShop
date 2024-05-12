@@ -1,20 +1,16 @@
 import React from "react";
 import NavBarHeader from "./NavBarHeader";
-// import NavBarLinks from "./NavBarLinks";
 import MenuItem from "./MenuItem";
 import DropDownMenuItem from "./DropDownMenuItem";
 import { Link } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 
 const NavBar = () => {
-  // let history = useHistory();
   return (
     <section className="menu">
       <nav className="navbar navigation">
         <div className="container">
           <NavBarHeader />
-          {/* <NavBarLinks /> */}
-          {/* Navbar Links */}
+
           <div id="navbar" className="navbar-collapse collapse text-center">
             <ul className="nav navbar-nav">
               {/* Home */}

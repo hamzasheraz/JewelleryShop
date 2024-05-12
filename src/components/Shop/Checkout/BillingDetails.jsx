@@ -14,23 +14,6 @@ const BillingDetails = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(postBillingDetails({ email, address, zipCode, city, country }));
-    // try {
-    //   const response = await axios.post("http://127.0.0.1:8000/billing-details", {
-    //     email:email,
-    //     address:address,
-    //     Zip_Code: zipCode,
-    //     City: city,
-    //     Country: country
-    //   });
-    //   console.log("Response:", response.data);
-    //   if(response){
-    //     alert("Details submitted sucessfully")
-    //   }
-    //   // Handle success or redirect to another page
-    // } catch (error) {
-    //   console.error("Error:", error);
-    //   // Handle error
-    // }
   };
 
   return (

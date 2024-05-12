@@ -167,39 +167,6 @@ def delete_cart_item(request):
     cart_item.delete()
     return Response({"message": "Cart item deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
-
-# @api_view(['PUT'])
-# @permission_classes([IsAuthenticated])
-# def update_profile(request):
-#     user = request.user
-
-#     # Retrieve UserProfile object
-#     try:
-#         user_profile = UserProfile.objects.get(user=user)
-#     except UserProfile.DoesNotExist:
-#         return Response({'error': 'User profile not found'}, status=status.HTTP_404_NOT_FOUND)
-
-#     # # Update User fields
-#     # user_serializer = UserSerializer(user, data=request.data, partial=True)
-#     # if user_serializer.is_valid():
-#     #     user_serializer.save()
-#     # else:
-#     #     print(user_serializer.errors)
-#     #     return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#     # Update UserProfile fields
-#     serializer=UserProfileSerializer(user_profile,many=False)
-#     return Response(serializer.data)
-#     profile_serializer = UserProfileSerializer(user_profile, data=request.data, partial=True)
-#     if profile_serializer.is_valid():
-#         profile_serializer.save()
-#         return Response(profile_serializer.data)
-#     else:
-#         return Response(profile_serializer.errors, status=400)
-
-#     return Response({'message': 'User data updated successfully'})
-
-
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_profile(request):
@@ -319,49 +286,6 @@ class WebHook(APIView):
             print('Unhandled event type {}'.format(event.type))
 
         return JsonResponse(success=True, safe=False)
-
-
-# import json
-# from django.http import JsonResponse
-# @api_view(['PUT'])
-# def update_profile(request):
-#  if request.method == 'PUT':
-#         user = request.user
-
-#         try:
-#             user_profile = UserProfile.objects.get(user=user)
-#         except UserProfile.DoesNotExist:
-#             return JsonResponse({'error': 'User profile not found'}, status=404)
-
-#         # Get the JSON data from request body
-#         data = json.loads(request.body.decode('utf-8'))
-
-#         # Update UserProfile fields
-#         try:
-#             if 'first_name' in data:
-#                 user.first_name = data['first_name']
-#             if 'last_name' in data:
-#                 user.last_name = data['last_name']
-#             if 'username' in data:
-#                 user.username = data['username']
-#             if 'email' in data:
-#                 user.email = data['email']
-#             if 'Phone_number' in data:
-#                 user_profile.Phone_number = data['Phone_number']
-#             if 'birth_date' in data:
-#                 user_profile.birth_date = data['birth_date']
-#             if 'image' in data:
-#                 user_profile.image = data['image']
-
-#             user.save()
-#             user_profile.save()
-
-#             return JsonResponse({'message': 'User data updated successfully'})
-#         except Exception as e:
-#             return JsonResponse({'error': str(e)}, status=400)
-#  else:
-#         return JsonResponse({'error': 'Only PUT requests are allowed'}, status=405)
-
 
 @api_view(['POST'])
 def create_billing_details(request):

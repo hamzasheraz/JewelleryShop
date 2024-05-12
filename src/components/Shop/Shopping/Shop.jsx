@@ -3,49 +3,12 @@ import Header from "../../Layout/Page-Header/Header";
 import ProductItem from "./ProductItem";
 import ProductModal from "./ProductModal";
 import FilterSection from "./FilterSection";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function Shop() {
   const authToken = JSON.parse(localStorage.getItem("authtokens"));
   const product = useSelector((state) => state.product);
   const [categories, setcategories] = useState("women");
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://127.0.0.1:8000/getproducts`, {
-  //       headers: {
-  //         Authorization: `Bearer ${authToken?.access}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       const data2 = res.data;
-  //       setproducts(data2);
-  //       console.log(data2);
-  //     });
-  //   console.log("hello");
-  // }, []);
-
-  // useEffect(() => {
-  //   getNotes();
-  // }, []);
-
-  // let getNotes = async () => {
-  //   console.log("Bearer " + String(authToken.access), "Senidng this");
-  //   let response = await fetch("http://127.0.0.1:8000/getproducts", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + String(authToken.access),
-  //     },
-  //   });
-  //   let data = await response.json();
-  //   if (response.status === 200) {
-  //     const data2 = response.data;
-  //     setproducts(data);
-  //     console.log(data);
-  //   }
-  // };
 
   const modalProduct = {
     title: "GM Pendant, Basalt Grey",
