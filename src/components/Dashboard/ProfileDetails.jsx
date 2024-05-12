@@ -27,7 +27,6 @@ const ProfileDetails = () => {
     e.preventDefault();
     dispatch(updateUserDetails(formData));
     dispatch(updateUserProfile({ ...formData, newImage: newImage }));
-    dispatch(fetchUserDetails());
     setEditMode(false);
   };
 
@@ -45,10 +44,11 @@ const ProfileDetails = () => {
                     <div className="pull-left text-center" href="#!">
                       <img
                         className="media-object user-img"
-                        src={
-                          user.data.image
-                            ? "http://127.0.0.1:8000/" + user.data.image
+                        src={user.isLoading===false &&(
+                          user.data?.image
+                            ? "http://127.0.0.1:8000/" + user.data?.image
                             : ""
+                        )
                         }
                         alt="Profile"
                       />
@@ -72,7 +72,7 @@ const ProfileDetails = () => {
                               onChange={handleChange}
                             />
                           ) : (
-                            `${user.data.firstname} ${user.data.lastname}`
+                            `${user.data?.firstname} ${user.data?.lastname}`
                           )}
                         </li>
 
@@ -86,7 +86,7 @@ const ProfileDetails = () => {
                               onChange={handleChange}
                             />
                           ) : (
-                            `${user.data.firstname}`
+                            `${user.data?.firstname}`
                           )}
                         </li>
                         <li>
@@ -99,7 +99,7 @@ const ProfileDetails = () => {
                               onChange={handleChange}
                             />
                           ) : (
-                            `${user.data.lastname}`
+                            `${user.data?.lastname}`
                           )}
                         </li>
                         <li>
@@ -112,7 +112,7 @@ const ProfileDetails = () => {
                               onChange={handleChange}
                             />
                           ) : (
-                            `${user.data.Phone_number}`
+                            `${user.data?.Phone_number}`
                           )}
                         </li>
                         <li>
@@ -125,7 +125,7 @@ const ProfileDetails = () => {
                               onChange={handleChange}
                             />
                           ) : (
-                            `${user.data.birth_date}`
+                            `${user.data?.birth_date}`
                           )}
                         </li>
                         <li>
@@ -138,7 +138,7 @@ const ProfileDetails = () => {
                               onChange={handleChange}
                             />
                           ) : (
-                            `${user.data.email}`
+                            `${user.data?.email}`
                           )}
                         </li>
                       </ul>

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { current } from "@reduxjs/toolkit";
 
 export const updateUserProfile = createAsyncThunk(
   "user/updateUserProfile",
@@ -117,12 +118,13 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchUserDetails.rejected, (state, action) => {
-        console.log("Error", action.payload);
         state.isError = true;
       })
       .addCase(updateUserDetails.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.data.username = action.payload.username;
+        state.data.firstname = action.payload.first_name;
+        state.data.lastname = action.payload.last_name;
       })
       .addCase(updateUserDetails.pending, (state) => {
         state.isLoading = true;
@@ -134,7 +136,9 @@ const userSlice = createSlice({
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.data = action.payload;
+        state.data.image = action.payload.image;
+        state.data.Phone_number = action.payload.Phone_number;
+        state.data.birth_date = action.payload.birth_date;
       })
       .addCase(updateUserProfile.pending, (state) => {
         state.isLoading = true;

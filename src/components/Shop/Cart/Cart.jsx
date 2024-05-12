@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 function Cart() {
   const cart = useSelector((state) => state.cart);
   const authToken = JSON.parse(localStorage.getItem("authtokens"));
-  useEffect(() => {
-    console.log("Cart items:", cart.items);
-  }, [cart.items]);
+
   return (
     <>
       <Header title="My Cart" page="cart" />
