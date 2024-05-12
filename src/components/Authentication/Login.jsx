@@ -9,6 +9,18 @@ import { fetchProductDetails } from "../../redux/slices/ProductSlice/productSlic
 import { fetchCartItems } from "../../redux/slices/CartSlice/cartSlice";
 import { fetchCartNoItems } from "../../redux/slices/CartSlice/cartSlice";
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  }
+});
+
 const Login = () => {
   const cookies = new Cookies();
   const navigate = useNavigate();
@@ -42,6 +54,10 @@ const Login = () => {
         dispatch(fetchProductDetails());
         dispatch(fetchCartItems());
         dispatch(fetchCartNoItems());
+        Toast.fire({
+          icon: "success",
+          title: "Signed in successfully"
+        });
         navigate("/home");
       })
       .catch((error) => {
